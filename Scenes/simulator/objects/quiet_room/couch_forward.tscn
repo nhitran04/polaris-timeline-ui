@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://khyrax5p1s40"]
+
+[ext_resource type="Texture2D" uid="uid://k4mxotg3xc7w" path="res://Assets/img/simulator/quiet_room/2_LivingRoom_48x48.png" id="1_0ahfk"]
+
+[node name="couch_forward" type="StaticBody2D"]
+z_index = 1
+
+[node name="sprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_0ahfk")
+region_enabled = true
+region_rect = Rect2(48.0702, 1358.7, 144.006, 81.4836)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(71.9971, -38.3418, 71.9971, 40.2582, -72.0029, 40.2582, -72.0029, -37.7418, -69.0029, -40.5418, 68.9971, -40.7418)

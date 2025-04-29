@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://b37lnfln0im44"]
+
+[ext_resource type="Script" path="res://Scripts/control_panel/toggle_button_label.gd" id="1_rkcey"]
+
+[node name="ToggleButtonLabel" type="RichTextLabel"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(296, 40)
+size_flags_vertical = 4
+mouse_filter = 2
+theme_override_colors/default_color = Color(0.435192, 0.435192, 0.435192, 1)
+theme_override_font_sizes/normal_font_size = 28
+bbcode_enabled = true
+text = "[right]ToggleButton[/right] "
+script = ExtResource("1_rkcey")

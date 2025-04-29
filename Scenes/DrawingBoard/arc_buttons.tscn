@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://b6yfl7m2aykhl"]
+
+[ext_resource type="Texture2D" uid="uid://coq2foorqo114" path="res://Assets/img/add_button-01.png" id="1_rjvas"]
+[ext_resource type="Texture2D" uid="uid://cbpkwxwre6qvr" path="res://Assets/img/shown-01.png" id="2_0gu5f"]
+
+[node name="buttons" type="HBoxContainer"]
+custom_minimum_size = Vector2(40, 40)
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/separation = 18
+
+[node name="split_arc_button" type="Button" parent="."]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+icon = ExtResource("1_rjvas")
+flat = true
+expand_icon = true
+
+[node name="toggle_hints" type="Button" parent="."]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+icon = ExtResource("2_0gu5f")
+flat = true
+expand_icon = true

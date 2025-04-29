@@ -1,0 +1,77 @@
+[gd_scene load_steps=7 format=3 uid="uid://cimj8cggbmra4"]
+
+[ext_resource type="Script" path="res://Scripts/experimentation/begin_screen.gd" id="1_0ayv8"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ujcss"]
+content_margin_top = 100.0
+content_margin_bottom = 100.0
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rocd1"]
+bg_color = Color(0.512186, 0.817463, 0.727492, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3c8qn"]
+bg_color = Color(0.480067, 0.82058, 0.709932, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5c1gt"]
+bg_color = Color(0.427853, 0.649093, 0.627519, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="Theme" id="Theme_6l4nt"]
+Button/styles/hover = SubResource("StyleBoxFlat_rocd1")
+Button/styles/normal = SubResource("StyleBoxFlat_3c8qn")
+Button/styles/pressed = SubResource("StyleBoxFlat_5c1gt")
+
+[node name="Begin" type="CanvasLayer"]
+layer = 10
+script = ExtResource("1_0ayv8")
+
+[node name="Background" type="PanelContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_ujcss")
+
+[node name="Label" type="RichTextLabel" parent="Background"]
+custom_minimum_size = Vector2(800, 200)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_font_sizes/normal_font_size = 56
+bbcode_enabled = true
+text = "[center]Press BEGIN to specify where the [color=cyan]umbrella[/color] could be.[/center]"
+
+[node name="Button" type="Button" parent="Background"]
+custom_minimum_size = Vector2(200, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = SubResource("Theme_6l4nt")
+theme_override_font_sizes/font_size = 40
+text = "Begin"
+
+[node name="Label2" type="RichTextLabel" parent="Background"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(800, 300)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme_override_font_sizes/normal_font_size = 40
+bbcode_enabled = true
+text = "
+[center]If after pressing BEGIN you encounter any issues that prevent you from completing the study, please exit the study by closing the browser window.[/center]"

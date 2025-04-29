@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://vyv0hojbbbmw"]
+
+[ext_resource type="Texture2D" uid="uid://coq2foorqo114" path="res://Assets/img/add_button-01.png" id="1_sfeix"]
+
+[node name="AddPredicateButton" type="Button"]
+auto_translate_mode = 1
+visible = false
+custom_minimum_size = Vector2(320, 80)
+theme_override_font_sizes/font_size = 32
+icon = ExtResource("1_sfeix")
+icon_alignment = 1
+vertical_icon_alignment = 0
+expand_icon = true

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://c4j4fmwtalcd2"]
+
+[ext_resource type="Script" path="res://Scripts/comm/set_domain_comm.gd" id="1_8tpi2"]
+
+[node name="SetDomain" type="HTTPRequest"]
+script = ExtResource("1_8tpi2")

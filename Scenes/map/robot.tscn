@@ -1,0 +1,28 @@
+[gd_scene load_steps=7 format=3 uid="uid://r6i2oc0q2ce4"]
+
+[ext_resource type="Script" path="res://Scripts/map/robot.gd" id="1_mxp7r"]
+[ext_resource type="PackedScene" uid="uid://dyoxtvj78skqa" path="res://Scenes/map/world_entity.tscn" id="2_al3gl"]
+[ext_resource type="PackedScene" uid="uid://bn3jc61qtbpqc" path="res://Assets/3d/stretch.fbx" id="2_e4xc1"]
+[ext_resource type="PackedScene" uid="uid://b6j4mal61e2ag" path="res://Scenes/map/label.tscn" id="2_lo6ck"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_e03kc"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sxlpi"]
+resource_local_to_scene = true
+render_priority = 4
+transparency = 1
+albedo_texture = SubResource("ViewportTexture_e03kc")
+
+[node name="robot" type="Node3D"]
+script = ExtResource("1_mxp7r")
+
+[node name="label" parent="." node_paths=PackedStringArray("textedit") instance=ExtResource("2_lo6ck")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 4.4)
+material_override = SubResource("StandardMaterial3D_sxlpi")
+textedit = NodePath("SubViewport/TextEdit")
+
+[node name="gripper" parent="." instance=ExtResource("2_al3gl")]
+
+[node name="Robot" parent="." instance=ExtResource("2_e4xc1")]
+transform = Transform3D(0.6, 0, 0, 0, -0.6, 9.05975e-08, 0, -9.05975e-08, -0.6, -0.139, 0, -0.041)

@@ -1,0 +1,907 @@
+[gd_scene load_steps=80 format=3 uid="uid://csngfscdisslu"]
+
+[ext_resource type="Script" path="res://Scripts/map/world.gd" id="1_rtqwf"]
+[ext_resource type="Script" path="res://Scripts/map/database.gd" id="2_4o1pg"]
+[ext_resource type="StyleBox" uid="uid://duv5kofvvvwnk" path="res://Resources/radial_menu_button.tres" id="3_aq8dx"]
+[ext_resource type="Script" path="res://Scripts/plan_visualizer/plan_visualizer.gd" id="3_wgkfx"]
+[ext_resource type="Script" path="res://Scripts/map/user_draw.gd" id="4_yyuai"]
+[ext_resource type="Script" path="res://Scripts/cameras/camera3d.gd" id="5_1bn8u"]
+[ext_resource type="Script" path="res://Scripts/map/debug/predicate_debug.gd" id="5_kweyg"]
+[ext_resource type="Texture2D" uid="uid://buoujuogfhshg" path="res://Assets/img/drawing_board/cancel_button.png" id="6_lnh1m"]
+[ext_resource type="PackedScene" uid="uid://cevrbc4qtmh45" path="res://Scenes/PlanVisualizer/scrubber.tscn" id="7_fwgmt"]
+[ext_resource type="Script" path="res://Scripts/map/UI/UI.gd" id="8_fk510"]
+[ext_resource type="Script" path="res://Scripts/map/UI/edit_menu.gd" id="9_qky1o"]
+[ext_resource type="Script" path="res://Scripts/map/UI/param_menu.gd" id="11_yy014"]
+[ext_resource type="Script" path="res://Scripts/map/UI/view_control.gd" id="13_qtq3n"]
+[ext_resource type="Texture2D" uid="uid://dxpf4diafydl8" path="res://Assets/img/view_control_translate-01.png" id="14_5k882"]
+[ext_resource type="Texture2D" uid="uid://s1pej8orjy5y" path="res://Assets/img/view_control_rotate-01.png" id="15_ayfxh"]
+[ext_resource type="Texture2D" uid="uid://bigpcpxvhdajl" path="res://Assets/img/tilt-02.png" id="16_7ceym"]
+[ext_resource type="Texture2D" uid="uid://dc2uqyg30qw7q" path="res://Assets/img/flatten-02.png" id="17_p0jd1"]
+[ext_resource type="Texture2D" uid="uid://b76fljgrd7nkf" path="res://Assets/img/plus-02.png" id="18_3tjmg"]
+[ext_resource type="Texture2D" uid="uid://c3xuh31hk1f0o" path="res://Assets/img/minus-02.png" id="19_kxgym"]
+[ext_resource type="Script" path="res://Scripts/map/UI/uncert_item_selection.gd" id="20_45w5y"]
+[ext_resource type="Script" path="res://Scripts/map/CameraTutorial/arrow.gd" id="20_ws2si"]
+[ext_resource type="Theme" uid="uid://t3t7fd6mgwfb" path="res://Resources/themes/uncert/ui_panel.tres" id="21_oi0ea"]
+[ext_resource type="Texture2D" uid="uid://t8yo5ckrkffp" path="res://Assets/img/paint_icon-01.png" id="22_hq02y"]
+[ext_resource type="Script" path="res://Scripts/map/UI/uncert_item_selection/param_panel.gd" id="22_u56qt"]
+[ext_resource type="Texture2D" uid="uid://cb5q02k1lgd7" path="res://Assets/img/warning.png" id="23_vb80u"]
+[ext_resource type="Texture2D" uid="uid://kmiehvqwph0l" path="res://Assets/img/eraser_icon-01.png" id="23_wjhyg"]
+[ext_resource type="Script" path="res://Scripts/map/UI/uncert_item_selection/key.gd" id="24_4oaei"]
+[ext_resource type="Script" path="res://Scripts/map/CameraTutorial/ui.gd" id="27_jn78l"]
+[ext_resource type="PackedScene" uid="uid://d11qbtir5mfwt" path="res://Scenes/map/camera_tutorial/checkbox.tscn" id="28_q4w36"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bbn75"]
+bg_color = Color(0, 0, 0, 0.745098)
+border_width_left = 8
+border_width_top = 8
+border_width_right = 8
+border_width_bottom = 8
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="Theme" id="Theme_c7pjq"]
+Panel/styles/panel = SubResource("StyleBoxFlat_bbn75")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2eyga"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_jgxh2"]
+material = SubResource("StandardMaterial3D_2eyga")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g02dv"]
+transparency = 1
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_0uhpx"]
+material = SubResource("StandardMaterial3D_g02dv")
+size = Vector2(250, 250)
+orientation = 2
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_ai0ng"]
+data = PackedVector3Array(125, -125, 0, -125, -125, 0, 125, 125, 0, -125, -125, 0, -125, 125, 0, 125, 125, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pv2a4"]
+
+[sub_resource type="Theme" id="Theme_3qrvx"]
+VScrollBar/styles/grabber = null
+VScrollBar/styles/grabber_highlight = null
+VScrollBar/styles/grabber_pressed = null
+VScrollBar/styles/scroll = SubResource("StyleBoxFlat_pv2a4")
+VScrollBar/styles/scroll_focus = null
+
+[sub_resource type="Theme" id="Theme_2qw78"]
+default_font_size = 42
+Button/styles/disabled = ExtResource("3_aq8dx")
+Button/styles/focus = ExtResource("3_aq8dx")
+Button/styles/hover = ExtResource("3_aq8dx")
+Button/styles/normal = ExtResource("3_aq8dx")
+Button/styles/pressed = ExtResource("3_aq8dx")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2fben"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_color = Color(0.8, 0.8, 0.8, 0)
+corner_radius_top_left = 110
+corner_radius_top_right = 110
+corner_radius_bottom_right = 110
+corner_radius_bottom_left = 110
+
+[sub_resource type="Theme" id="Theme_0mnhb"]
+Panel/styles/panel = SubResource("StyleBoxFlat_2fben")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yrs3w"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rv2tm"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qujeo"]
+bg_color = Color(0.855, 0.437, 0.662, 0)
+corner_radius_top_left = 13
+corner_radius_top_right = 13
+corner_radius_bottom_right = 13
+corner_radius_bottom_left = 13
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gx8by"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="Theme" id="Theme_xdhmx"]
+Button/styles/focus = SubResource("StyleBoxFlat_yrs3w")
+Button/styles/hover = SubResource("StyleBoxFlat_rv2tm")
+Button/styles/normal = SubResource("StyleBoxFlat_qujeo")
+Button/styles/pressed = SubResource("StyleBoxFlat_gx8by")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mtt3j"]
+bg_color = Color(0.569, 0.569, 0.569, 1)
+border_color = Color(1, 1, 1, 1)
+expand_margin_left = 1.0
+expand_margin_right = 1.0
+
+[sub_resource type="Theme" id="Theme_8xt3c"]
+VSlider/styles/slider = SubResource("StyleBoxFlat_mtt3j")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o0hra"]
+bg_color = Color(0.568973, 0.568973, 0.568973, 1)
+expand_margin_top = 1.0
+expand_margin_bottom = 1.0
+
+[sub_resource type="Theme" id="Theme_42sr0"]
+HSlider/styles/slider = SubResource("StyleBoxFlat_o0hra")
+
+[sub_resource type="ImageTexture" id="ImageTexture_xnc1w"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x2b7g"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ioe1r"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k8d1d"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rd4q8"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kag3l"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2v37d"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_okhe5"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u5xnu"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l3ogg"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="ImageTexture" id="ImageTexture_r7i8j"]
+
+[sub_resource type="ImageTexture" id="ImageTexture_80nnk"]
+
+[sub_resource type="ImageTexture" id="ImageTexture_c8c1w"]
+
+[sub_resource type="ImageTexture" id="ImageTexture_r67i6"]
+
+[sub_resource type="ImageTexture" id="ImageTexture_ml0e3"]
+
+[sub_resource type="ImageTexture" id="ImageTexture_cl24f"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_285mq"]
+bg_color = Color(0.325063, 0.093693, 0.145351, 0.768)
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_8p48l"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_nmtaa"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_txnyo"]
+bg_color = Color(0, 0, 0, 0.729)
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_2swbk"]
+
+[sub_resource type="Theme" id="Theme_qajq6"]
+OptionButton/colors/font_color = Color(0.875, 0.875, 0.875, 0)
+OptionButton/colors/font_disabled_color = Color(0.875, 0.875, 0.875, 0)
+OptionButton/colors/font_focus_color = Color(0.87451, 0.87451, 0.87451, 0)
+OptionButton/colors/font_hover_color = Color(0.87451, 0.87451, 0.87451, 0)
+OptionButton/colors/font_hover_pressed_color = Color(0.87451, 0.87451, 0.87451, 0)
+OptionButton/colors/font_outline_color = Color(0.87451, 0.87451, 0.87451, 0)
+OptionButton/colors/font_pressed_color = Color(0.87451, 0.87451, 0.87451, 0)
+OptionButton/colors/icon_disabled_color = Color(0.87451, 0.87451, 0.87451, 0)
+OptionButton/colors/icon_focus_color = Color(0.87451, 0.87451, 0.87451, 0)
+OptionButton/colors/icon_hover_color = Color(0.87451, 0.87451, 0.87451, 0)
+OptionButton/colors/icon_hover_pressed_color = Color(0.87451, 0.87451, 0.87451, 0)
+OptionButton/colors/icon_normal_color = Color(0.87451, 0.87451, 0.87451, 0)
+OptionButton/colors/icon_pressed_color = Color(0.87451, 0.87451, 0.87451, 0)
+OptionButton/icons/arrow = SubResource("ImageTexture_xnc1w")
+OptionButton/styles/disabled = SubResource("StyleBoxFlat_x2b7g")
+OptionButton/styles/disabled_mirrored = SubResource("StyleBoxFlat_ioe1r")
+OptionButton/styles/focus = SubResource("StyleBoxFlat_k8d1d")
+OptionButton/styles/hover = SubResource("StyleBoxFlat_rd4q8")
+OptionButton/styles/hover_mirrored = SubResource("StyleBoxFlat_kag3l")
+OptionButton/styles/normal = SubResource("StyleBoxFlat_2v37d")
+OptionButton/styles/normal_mirrored = SubResource("StyleBoxFlat_okhe5")
+OptionButton/styles/pressed = SubResource("StyleBoxFlat_u5xnu")
+OptionButton/styles/pressed_mirrored = SubResource("StyleBoxFlat_l3ogg")
+PopupMenu/constants/h_separation = 14
+PopupMenu/constants/indent = 10
+PopupMenu/constants/v_separation = 64
+PopupMenu/font_sizes/font_size = 28
+PopupMenu/icons/radio_checked = SubResource("ImageTexture_r7i8j")
+PopupMenu/icons/radio_checked_disabled = SubResource("ImageTexture_80nnk")
+PopupMenu/icons/radio_unchecked = SubResource("ImageTexture_c8c1w")
+PopupMenu/icons/radio_unchecked_disabled = SubResource("ImageTexture_r67i6")
+PopupMenu/icons/unchecked = SubResource("ImageTexture_ml0e3")
+PopupMenu/icons/unchecked_disabled = SubResource("ImageTexture_cl24f")
+PopupMenu/styles/hover = SubResource("StyleBoxFlat_285mq")
+PopupMenu/styles/labeled_separator_left = SubResource("StyleBoxLine_8p48l")
+PopupMenu/styles/labeled_separator_right = SubResource("StyleBoxLine_nmtaa")
+PopupMenu/styles/panel = SubResource("StyleBoxFlat_txnyo")
+PopupMenu/styles/separator = SubResource("StyleBoxLine_2swbk")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_71eyo"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7lqcu"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dr6d4"]
+content_margin_top = 10.0
+content_margin_bottom = 20.0
+bg_color = Color(0.184314, 0.184314, 0.184314, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bkh8r"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qafmy"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1ac2s"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0icx6"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[node name="World" type="Node" node_paths=PackedStringArray("mesh3d", "map", "camera", "user_drawer", "add_menu", "editor_ui", "planvis_ui", "view_control_ui", "uncert_controls_ui", "key_ui", "world_db")]
+script = ExtResource("1_rtqwf")
+mesh3d = NodePath("Map/Map/MapMesh")
+map = NodePath("Map/Map")
+camera = NodePath("Map/Camera3D")
+user_drawer = NodePath("Map/UILayerMapEditor/UserDrawer")
+add_menu = NodePath("Map/UILayerMapEditor/BuildMenu")
+editor_ui = NodePath("Map/UILayerMapEditor")
+planvis_ui = NodePath("Map/UILayerPlanViz")
+view_control_ui = NodePath("Map/UILayerMapEditor/ViewControl")
+uncert_controls_ui = NodePath("Map/UILayerMapEditor/UncertControls")
+key_ui = NodePath("Map/UILayerMapEditor/Key")
+world_db = NodePath("world_database")
+
+[node name="world_database" type="Node" parent="." node_paths=PackedStringArray("map", "uncert_param_panel")]
+script = ExtResource("2_4o1pg")
+map = NodePath("../Map/Map")
+uncert_param_panel = NodePath("../Map/UILayerMapEditor/UncertControls/ParamPanel")
+
+[node name="Map" type="Node3D" parent="."]
+
+[node name="PredicateDebug" type="Panel" parent="Map"]
+visible = false
+offset_right = 500.0
+offset_bottom = 700.0
+theme = SubResource("Theme_c7pjq")
+script = ExtResource("5_kweyg")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Map/PredicateDebug"]
+layout_mode = 0
+offset_left = 25.0
+offset_top = 25.0
+offset_right = 475.0
+offset_bottom = 65.0
+
+[node name="Title" type="Label" parent="Map/PredicateDebug/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Current Predicates
+"
+
+[node name="Predicates" type="Label" parent="Map/PredicateDebug/VBoxContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+
+[node name="Camera3D" type="Camera3D" parent="Map"]
+transform = Transform3D(1, 0, 0, 0, 1, 1.74846e-07, 0, -1.74846e-07, 1, 0, 0, 17)
+cull_mask = 524287
+current = true
+script = ExtResource("5_1bn8u")
+
+[node name="Map" type="Node3D" parent="Map"]
+top_level = true
+
+[node name="MapMesh" type="MeshInstance3D" parent="Map/Map"]
+transform = Transform3D(2, 0, 0, 0, -8.74228e-08, -2, 0, 2, -8.74228e-08, 0, 0, 0)
+mesh = SubResource("PlaneMesh_jgxh2")
+
+[node name="BackgroundStaticBody" type="StaticBody3D" parent="Map/Map"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.01)
+
+[node name="Background" type="MeshInstance3D" parent="Map/Map/BackgroundStaticBody"]
+transparency = 1.0
+mesh = SubResource("PlaneMesh_0uhpx")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Map/Map/BackgroundStaticBody"]
+shape = SubResource("ConcavePolygonShape3D_ai0ng")
+
+[node name="UILayerPlanViz" type="CanvasLayer" parent="Map"]
+visible = false
+
+[node name="PlanPane" type="Panel" parent="Map/UILayerPlanViz" node_paths=PackedStringArray("world_db")]
+auto_translate_mode = 1
+offset_right = 600.0
+offset_bottom = 1600.0
+script = ExtResource("3_wgkfx")
+world_db = NodePath("../../../world_database")
+
+[node name="PlanScroll" type="ScrollContainer" parent="Map/UILayerPlanViz/PlanPane"]
+auto_translate_mode = 1
+layout_mode = 0
+offset_top = 50.0
+offset_right = 500.0
+offset_bottom = 1550.0
+theme = SubResource("Theme_3qrvx")
+vertical_scroll_mode = 0
+
+[node name="ActionContainer" type="HBoxContainer" parent="Map/UILayerPlanViz/PlanPane/PlanScroll"]
+layout_mode = 2
+theme_override_constants/separation = 24
+
+[node name="Scrubber" parent="Map/UILayerPlanViz/PlanPane" instance=ExtResource("7_fwgmt")]
+z_index = 1
+mouse_filter = 2
+
+[node name="CloseButton" type="Button" parent="Map/UILayerPlanViz"]
+custom_minimum_size = Vector2(100, 100)
+offset_right = 50.0
+offset_bottom = 50.0
+icon = ExtResource("6_lnh1m")
+flat = true
+expand_icon = true
+
+[node name="UILayerMapEditor" type="CanvasLayer" parent="Map"]
+script = ExtResource("8_fk510")
+
+[node name="BuildMenu" type="Control" parent="Map/UILayerMapEditor"]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+script = ExtResource("9_qky1o")
+
+[node name="Surface" type="Button" parent="Map/UILayerMapEditor/BuildMenu"]
+layout_mode = 0
+offset_left = -500.0
+offset_top = 100.0
+offset_right = -147.0
+offset_bottom = 201.0
+theme = SubResource("Theme_2qw78")
+text = "Surface"
+
+[node name="Region" type="Button" parent="Map/UILayerMapEditor/BuildMenu"]
+layout_mode = 0
+offset_left = 147.0
+offset_top = 100.0
+offset_right = 500.0
+offset_bottom = 201.0
+theme = SubResource("Theme_2qw78")
+text = "Region"
+
+[node name="Entity" type="Button" parent="Map/UILayerMapEditor/BuildMenu"]
+layout_mode = 0
+offset_left = 50.0
+offset_top = -201.0
+offset_right = 403.0
+offset_bottom = -100.0
+theme = SubResource("Theme_2qw78")
+text = "Entity"
+
+[node name="Person" type="Button" parent="Map/UILayerMapEditor/BuildMenu"]
+auto_translate_mode = 1
+layout_mode = 0
+offset_left = -402.0
+offset_top = -201.0
+offset_right = -49.0
+offset_bottom = -100.0
+theme = SubResource("Theme_2qw78")
+text = "Person"
+
+[node name="Custom" type="Button" parent="Map/UILayerMapEditor/BuildMenu"]
+auto_translate_mode = 1
+visible = false
+layout_mode = 0
+offset_left = -176.0
+offset_top = 402.0
+offset_right = 177.0
+offset_bottom = 503.0
+theme = SubResource("Theme_2qw78")
+
+[node name="ParamMenu" type="ColorPicker" parent="Map/UILayerMapEditor"]
+visible = false
+offset_right = 298.0
+offset_bottom = 576.0
+mouse_filter = 0
+script = ExtResource("11_yy014")
+
+[node name="UserDrawer" type="Line2D" parent="Map/UILayerMapEditor"]
+script = ExtResource("4_yyuai")
+
+[node name="ViewControl" type="Panel" parent="Map/UILayerMapEditor"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -348.0
+offset_right = 257.0
+grow_vertical = 0
+mouse_filter = 2
+theme = SubResource("Theme_0mnhb")
+script = ExtResource("13_qtq3n")
+
+[node name="translate_icon" type="Sprite2D" parent="Map/UILayerMapEditor/ViewControl"]
+position = Vector2(132, 130)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("14_5k882")
+
+[node name="rotate_icon" type="Sprite2D" parent="Map/UILayerMapEditor/ViewControl"]
+position = Vector2(132, 130)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("15_ayfxh")
+
+[node name="rotate" type="Button" parent="Map/UILayerMapEditor/ViewControl/rotate_icon"]
+visible = false
+offset_left = 160.0
+offset_top = -24.0
+offset_right = 212.0
+offset_bottom = 26.0
+focus_mode = 0
+theme = SubResource("Theme_xdhmx")
+
+[node name="right" type="Button" parent="Map/UILayerMapEditor/ViewControl"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(10, 14)
+layout_mode = 0
+offset_left = 166.0
+offset_top = 110.0
+offset_right = 199.0
+offset_bottom = 148.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+focus_mode = 0
+flat = true
+
+[node name="left" type="Button" parent="Map/UILayerMapEditor/ViewControl"]
+custom_minimum_size = Vector2(10, 14)
+layout_mode = 2
+offset_left = 65.0
+offset_top = 106.0
+offset_right = 99.0
+offset_bottom = 153.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+focus_mode = 0
+flat = true
+
+[node name="top" type="Button" parent="Map/UILayerMapEditor/ViewControl"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(14, 10)
+layout_mode = 0
+offset_left = 108.0
+offset_top = 61.0
+offset_right = 155.0
+offset_bottom = 96.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+focus_mode = 0
+flat = true
+
+[node name="bottom" type="Button" parent="Map/UILayerMapEditor/ViewControl"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(14, 10)
+layout_mode = 0
+offset_left = 108.0
+offset_top = 164.0
+offset_right = 154.0
+offset_bottom = 199.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+focus_mode = 0
+flat = true
+
+[node name="zoom_out" type="Button" parent="Map/UILayerMapEditor/ViewControl"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(14, 10)
+layout_mode = 0
+offset_left = 65.0
+offset_top = 237.0
+offset_right = 111.0
+offset_bottom = 272.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+flat = true
+
+[node name="zoom_in" type="Button" parent="Map/UILayerMapEditor/ViewControl"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(14, 10)
+layout_mode = 0
+offset_left = 141.0
+offset_top = 238.0
+offset_right = 187.0
+offset_bottom = 273.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+flat = true
+
+[node name="tilt_slider" type="VSlider" parent="Map/UILayerMapEditor/ViewControl"]
+layout_mode = 0
+offset_left = -30.0
+offset_top = 38.0
+offset_right = -14.0
+offset_bottom = 221.0
+theme = SubResource("Theme_8xt3c")
+min_value = -20.0
+max_value = 0.0
+
+[node name="tilt" type="Sprite2D" parent="Map/UILayerMapEditor/ViewControl/tilt_slider"]
+position = Vector2(15, 199)
+scale = Vector2(0.24, 0.24)
+texture = ExtResource("16_7ceym")
+
+[node name="flatten" type="Sprite2D" parent="Map/UILayerMapEditor/ViewControl/tilt_slider"]
+position = Vector2(15, -16)
+scale = Vector2(0.24, 0.24)
+texture = ExtResource("17_p0jd1")
+
+[node name="zoom_slider" type="HSlider" parent="Map/UILayerMapEditor/ViewControl"]
+z_index = 1
+layout_mode = 0
+offset_left = 41.0
+offset_top = 270.0
+offset_right = 224.0
+offset_bottom = 286.0
+theme = SubResource("Theme_42sr0")
+min_value = 5.0
+max_value = 30.0
+step = 0.1
+value = 18.0
+
+[node name="plus" type="Sprite2D" parent="Map/UILayerMapEditor/ViewControl/zoom_slider"]
+position = Vector2(202, 14)
+scale = Vector2(0.24, 0.24)
+texture = ExtResource("18_3tjmg")
+
+[node name="minus" type="Sprite2D" parent="Map/UILayerMapEditor/ViewControl/zoom_slider"]
+position = Vector2(-18, 14)
+scale = Vector2(0.24, 0.24)
+texture = ExtResource("19_kxgym")
+
+[node name="Highlighter" type="TextureRect" parent="Map/UILayerMapEditor/ViewControl"]
+visible = false
+layout_mode = 0
+offset_left = 280.0
+offset_top = 120.0
+offset_right = 388.0
+offset_bottom = 214.0
+rotation = 0.726057
+expand_mode = 2
+script = ExtResource("20_ws2si")
+
+[node name="UncertControls" type="VBoxContainer" parent="Map/UILayerMapEditor"]
+visible = false
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("20_45w5y")
+
+[node name="Top" type="HBoxContainer" parent="Map/UILayerMapEditor/UncertControls"]
+layout_mode = 2
+
+[node name="UncertItemSelection" type="Panel" parent="Map/UILayerMapEditor/UncertControls/Top"]
+z_index = 1
+custom_minimum_size = Vector2(200, 106)
+layout_mode = 2
+theme = ExtResource("21_oi0ea")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Map/UILayerMapEditor/UncertControls/Top/UncertItemSelection"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -53.0
+offset_right = 200.0
+offset_bottom = 53.0
+grow_vertical = 2
+theme_override_constants/separation = 4
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="Map/UILayerMapEditor/UncertControls/Top/UncertItemSelection/HBoxContainer"]
+layout_mode = 2
+
+[node name="SubViewport" type="SubViewport" parent="Map/UILayerMapEditor/UncertControls/Top/UncertItemSelection/HBoxContainer/SubViewportContainer"]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(80, 106)
+render_target_update_mode = 0
+
+[node name="Camera3D" type="Camera3D" parent="Map/UILayerMapEditor/UncertControls/Top/UncertItemSelection/HBoxContainer/SubViewportContainer/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 0.976945, 0.213491, 0, -0.213491, 0.976945, 0, 1.36029, 4.034)
+cull_mask = 1048574
+current = true
+fov = 35.833
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Map/UILayerMapEditor/UncertControls/Top/UncertItemSelection/HBoxContainer/SubViewportContainer/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 0.87171, 0.490022, 0, -0.490022, 0.87171, 0, 3.2829, 10.7297)
+layers = 524288
+light_energy = 0.47
+light_cull_mask = 4294967294
+
+[node name="Label" type="Label" parent="Map/UILayerMapEditor/UncertControls/Top/UncertItemSelection/HBoxContainer"]
+clip_contents = true
+custom_minimum_size = Vector2(110, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "umbrella"
+autowrap_mode = 3
+
+[node name="OptionButton" type="OptionButton" parent="Map/UILayerMapEditor/UncertControls/Top/UncertItemSelection"]
+layout_mode = 0
+offset_right = 201.0
+offset_bottom = 106.0
+theme = SubResource("Theme_qajq6")
+disabled = true
+selected = 0
+item_count = 2
+popup/item_0/text = "umbrella"
+popup/item_0/id = 1
+popup/item_1/text = "bag"
+popup/item_1/id = 0
+
+[node name="Mode" type="Panel" parent="Map/UILayerMapEditor/UncertControls/Top"]
+auto_translate_mode = 1
+z_index = 1
+custom_minimum_size = Vector2(100, 106)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_71eyo")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Map/UILayerMapEditor/UncertControls/Top/Mode"]
+auto_translate_mode = 1
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 12.0
+offset_top = -53.0
+offset_right = 182.0
+offset_bottom = 27.0
+grow_vertical = 2
+theme_override_constants/separation = 10
+
+[node name="Paint" type="Button" parent="Map/UILayerMapEditor/UncertControls/Top/Mode/HBoxContainer"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+icon = ExtResource("22_hq02y")
+icon_alignment = 1
+expand_icon = true
+
+[node name="Label" type="Label" parent="Map/UILayerMapEditor/UncertControls/Top/Mode/HBoxContainer/Paint"]
+layout_mode = 0
+offset_top = 80.0
+offset_right = 80.0
+offset_bottom = 103.0
+text = "Paint"
+horizontal_alignment = 1
+
+[node name="Erase" type="Button" parent="Map/UILayerMapEditor/UncertControls/Top/Mode/HBoxContainer"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+icon = ExtResource("23_wjhyg")
+icon_alignment = 1
+expand_icon = true
+
+[node name="Label" type="Label" parent="Map/UILayerMapEditor/UncertControls/Top/Mode/HBoxContainer/Erase"]
+auto_translate_mode = 1
+layout_mode = 0
+offset_top = 80.0
+offset_right = 80.0
+offset_bottom = 103.0
+text = "Erase"
+horizontal_alignment = 1
+
+[node name="ParamPanel" type="Panel" parent="Map/UILayerMapEditor/UncertControls" node_paths=PackedStringArray("db")]
+custom_minimum_size = Vector2(0, 450)
+layout_mode = 2
+theme = ExtResource("21_oi0ea")
+script = ExtResource("22_u56qt")
+db = NodePath("../../../../world_database")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Map/UILayerMapEditor/UncertControls/ParamPanel"]
+custom_minimum_size = Vector2(304, 500)
+layout_mode = 0
+offset_right = 304.0
+offset_bottom = 500.0
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Map/UILayerMapEditor/UncertControls/ParamPanel/VBoxContainer"]
+custom_minimum_size = Vector2(304, 500)
+layout_mode = 2
+mouse_force_pass_scroll_events = false
+follow_focus = true
+horizontal_scroll_mode = 0
+
+[node name="Entries" type="VBoxContainer" parent="Map/UILayerMapEditor/UncertControls/ParamPanel/VBoxContainer/ScrollContainer"]
+custom_minimum_size = Vector2(304, 0)
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Status" type="HBoxContainer" parent="Map/UILayerMapEditor/UncertControls/ParamPanel/VBoxContainer"]
+visible = false
+custom_minimum_size = Vector2(200, 24)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+
+[node name="PanelContainer" type="PanelContainer" parent="Map/UILayerMapEditor/UncertControls/ParamPanel/VBoxContainer/Status"]
+visible = false
+custom_minimum_size = Vector2(24, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_7lqcu")
+
+[node name="Sprite2D" type="Sprite2D" parent="Map/UILayerMapEditor/UncertControls/ParamPanel/VBoxContainer/Status/PanelContainer"]
+scale = Vector2(0.0520833, 0.0520833)
+texture = ExtResource("23_vb80u")
+offset = Vector2(230, 230)
+
+[node name="Label" type="Label" parent="Map/UILayerMapEditor/UncertControls/ParamPanel/VBoxContainer/Status"]
+visible = false
+layout_mode = 2
+text = "Values do not equal 1.0"
+
+[node name="Button" type="Button" parent="Map/UILayerMapEditor/UncertControls/ParamPanel/VBoxContainer"]
+visible = false
+custom_minimum_size = Vector2(140, 60)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Compute
+Percentages"
+
+[node name="CameraTutorial" type="PanelContainer" parent="Map/UILayerMapEditor"]
+visible = false
+custom_minimum_size = Vector2(340, 0)
+offset_right = 340.0
+offset_bottom = 287.0
+size_flags_vertical = 4
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_dr6d4")
+script = ExtResource("27_jn78l")
+
+[node name="CameraTutorialVBox" type="VBoxContainer" parent="Map/UILayerMapEditor/CameraTutorial"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 42
+
+[node name="CurrentInstruction" type="PanelContainer" parent="Map/UILayerMapEditor/CameraTutorial/CameraTutorialVBox"]
+custom_minimum_size = Vector2(320, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_bkh8r")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Map/UILayerMapEditor/CameraTutorial/CameraTutorialVBox/CurrentInstruction"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 22
+
+[node name="StepLabel" type="Label" parent="Map/UILayerMapEditor/CameraTutorial/CameraTutorialVBox/CurrentInstruction/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Step 1"
+
+[node name="InstructionLabel" type="Label" parent="Map/UILayerMapEditor/CameraTutorial/CameraTutorialVBox/CurrentInstruction/VBoxContainer"]
+custom_minimum_size = Vector2(320, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "Use the arrows below to move the map around."
+autowrap_mode = 3
+
+[node name="Button" type="Button" parent="Map/UILayerMapEditor/CameraTutorial/CameraTutorialVBox/CurrentInstruction/VBoxContainer"]
+visible = false
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+mouse_filter = 1
+theme_override_font_sizes/font_size = 24
+text = "I am unable
+to right click"
+
+[node name="CheckList" type="PanelContainer" parent="Map/UILayerMapEditor/CameraTutorial/CameraTutorialVBox"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(320, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_qafmy")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Map/UILayerMapEditor/CameraTutorial/CameraTutorialVBox/CheckList"]
+auto_translate_mode = 1
+layout_mode = 2
+mouse_filter = 2
+
+[node name="ChecklistLabel" type="Label" parent="Map/UILayerMapEditor/CameraTutorial/CameraTutorialVBox/CheckList/VBoxContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Checklist:"
+
+[node name="CheckboxItems" type="VBoxContainer" parent="Map/UILayerMapEditor/CameraTutorial/CameraTutorialVBox/CheckList/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="CheckboxItem" parent="Map/UILayerMapEditor/CameraTutorial/CameraTutorialVBox/CheckList/VBoxContainer/CheckboxItems" instance=ExtResource("28_q4w36")]
+layout_mode = 2
+
+[node name="Key" type="Panel" parent="Map/UILayerMapEditor"]
+visible = false
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -100.0
+offset_right = -100.0
+grow_horizontal = 0
+grow_vertical = 0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_1ac2s")
+script = ExtResource("24_4oaei")
+
+[node name="Key" type="VBoxContainer" parent="Map/UILayerMapEditor/Key"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -280.0
+offset_top = -120.0
+offset_right = -74.0
+offset_bottom = -44.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="Label" type="Label" parent="Map/UILayerMapEditor/Key/Key"]
+layout_mode = 2
+text = "Key"
+autowrap_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="Map/UILayerMapEditor/Key/Key"]
+custom_minimum_size = Vector2(200, 22)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_0icx6")
+
+[node name="TextureRect" type="TextureRect" parent="Map/UILayerMapEditor/Key/Key/PanelContainer"]
+custom_minimum_size = Vector2(200, 22)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Map/UILayerMapEditor/Key/Key"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="low" type="Label" parent="Map/UILayerMapEditor/Key/Key/HBoxContainer"]
+custom_minimum_size = Vector2(103, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "low"
+
+[node name="high" type="Label" parent="Map/UILayerMapEditor/Key/Key/HBoxContainer"]
+custom_minimum_size = Vector2(103, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "high"
+horizontal_alignment = 2
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Map"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 40.649)
+shadow_enabled = true
+shadow_opacity = 0.39
+shadow_blur = 4.62
+
+[connection signal="input_event" from="Map/Map/BackgroundStaticBody" to="." method="_on_static_body_3d_input_event"]
+[connection signal="scroll_ended" from="Map/UILayerPlanViz/PlanPane/PlanScroll" to="Map/UILayerPlanViz/PlanPane" method="_on_plan_scroll_ended"]
+[connection signal="scroll_started" from="Map/UILayerPlanViz/PlanPane/PlanScroll" to="Map/UILayerPlanViz/PlanPane" method="_on_plan_scroll_started"]
+[connection signal="pressed" from="Map/UILayerMapEditor/BuildMenu/Surface" to="." method="_on_surface_pressed"]
+[connection signal="pressed" from="Map/UILayerMapEditor/BuildMenu/Region" to="." method="_on_region_pressed"]
+[connection signal="pressed" from="Map/UILayerMapEditor/BuildMenu/Entity" to="." method="_on_entity_pressed"]
+[connection signal="pressed" from="Map/UILayerMapEditor/BuildMenu/Person" to="." method="_on_person_pressed"]
+[connection signal="item_selected" from="Map/UILayerMapEditor/UncertControls/Top/UncertItemSelection/OptionButton" to="Map/UILayerMapEditor/UncertControls" method="_item_selected"]
+[connection signal="toggled" from="Map/UILayerMapEditor/UncertControls/Top/UncertItemSelection/OptionButton" to="Map/UILayerMapEditor/UncertControls" method="_on_option_button_toggled"]
+[connection signal="mouse_entered" from="Map/UILayerMapEditor/UncertControls/ParamPanel/VBoxContainer/ScrollContainer" to="Map/UILayerMapEditor/UncertControls/ParamPanel" method="_on_scroll_container_mouse_entered"]
+[connection signal="mouse_exited" from="Map/UILayerMapEditor/UncertControls/ParamPanel/VBoxContainer/ScrollContainer" to="Map/UILayerMapEditor/UncertControls/ParamPanel" method="_on_scroll_container_mouse_exited"]

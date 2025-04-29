@@ -1,0 +1,42 @@
+[gd_scene load_steps=3 format=3 uid="uid://dofa0520s5kbf"]
+
+[ext_resource type="Script" uid="uid://b0ufljnlm7lht" path="res://Scripts/experimentation/end_screen.gd" id="1_kapdi"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3bb3r"]
+bg_color = Color(0, 0, 0, 0.784)
+
+[node name="End" type="CanvasLayer"]
+layer = 10
+script = ExtResource("1_kapdi")
+
+[node name="Background" type="PanelContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_3bb3r")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Background"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Label" type="Label" parent="Background/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 92
+text = "Please wait..."
+
+[node name="Explanation" type="Label" parent="Background/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 31
+text = "while we save your data. This can take up to 45 seconds."
+
+[node name="Unresponsive" type="Label" parent="Background/VBoxContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 31
+text = "It is normal for your browser to become unresponsive while waiting."

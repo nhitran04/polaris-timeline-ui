@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://bldkivfk3ok7l"]
+
+[ext_resource type="Script" path="res://Scripts/demo_code/Node2D.gd" id="1_e4tc5"]
+[ext_resource type="Texture2D" uid="uid://b2v1ejnkat1gd" path="res://Assets/img/node2_v2.png" id="2_uvcq1"]
+
+[node name="Node2D" type="Node2D"]
+modulate = Color(0, 0, 0, 1)
+script = ExtResource("1_e4tc5")
+
+[node name="Lines" type="Node2D" parent="."]
+
+[node name="Start" type="Sprite2D" parent="."]
+top_level = true
+position = Vector2(334, 873)
+texture = ExtResource("2_uvcq1")

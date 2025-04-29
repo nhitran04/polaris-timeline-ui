@@ -1,0 +1,37 @@
+[gd_scene load_steps=4 format=3 uid="uid://b4c2fxp2xoltn"]
+
+[ext_resource type="Script" path="res://Scripts/plan_visualizer/plan_vis_element.gd" id="1_7d6w1"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7m7r7"]
+bg_color = Color(0.184314, 0.462745, 0.470588, 1)
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 30
+
+[sub_resource type="Theme" id="Theme_nasyd"]
+Panel/styles/panel = SubResource("StyleBoxFlat_7m7r7")
+
+[node name="Checkpoint" type="HBoxContainer"]
+auto_translate_mode = 1
+offset_right = 40.0
+offset_bottom = 107.0
+theme_override_constants/separation = 20
+script = ExtResource("1_7d6w1")
+
+[node name="Panel" type="Panel" parent="."]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+size_flags_vertical = 4
+theme = SubResource("Theme_nasyd")
+
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 2
+offset_left = 2.0
+offset_top = 5.0
+offset_right = 57.0
+offset_bottom = 55.0
+theme_override_font_sizes/font_size = 36
+text = "-1"
+horizontal_alignment = 1

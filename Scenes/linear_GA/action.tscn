@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://cg1lgqs2hpjpw"]
+
+[ext_resource type="PackedScene" uid="uid://c66kkalgyv4g6" path="res://Scenes/DrawingBoard/action.tscn" id="1_sxiwj"]
+
+[node name="Control2" node_paths=PackedStringArray("label") instance=ExtResource("1_sxiwj")]
+label = NodePath("Label")
+
+[node name="Panel" parent="." index="1"]
+visible = false
+
+[node name="Panel2" type="Panel" parent="." index="2"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0

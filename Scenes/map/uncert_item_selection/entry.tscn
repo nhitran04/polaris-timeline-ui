@@ -1,0 +1,150 @@
+[gd_scene load_steps=10 format=3 uid="uid://staj1aua86v7"]
+
+[ext_resource type="Theme" uid="uid://t3t7fd6mgwfb" path="res://Resources/themes/uncert/ui_panel.tres" id="1_l2t0t"]
+[ext_resource type="Script" uid="uid://bfp8mep8vdipx" path="res://Scripts/map/UI/uncert_item_selection/entry.gd" id="1_mn5fp"]
+[ext_resource type="Texture2D" uid="uid://buoujuogfhshg" path="res://Assets/img/drawing_board/cancel_button.png" id="3_e04yf"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_30bde"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w5e5w"]
+bg_color = Color(0.2, 0.2, 0.2, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m3e7l"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l3uw1"]
+bg_color = Color(0.151276, 0.151276, 0.151276, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o0hra"]
+bg_color = Color(0.568973, 0.568973, 0.568973, 1)
+expand_margin_top = 1.0
+expand_margin_bottom = 1.0
+
+[sub_resource type="Theme" id="Theme_42sr0"]
+HSlider/styles/slider = SubResource("StyleBoxFlat_o0hra")
+
+[node name="EntryBackground" type="Panel"]
+custom_minimum_size = Vector2(303, 85)
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_30bde")
+script = ExtResource("1_mn5fp")
+
+[node name="Entry" type="Panel" parent="."]
+custom_minimum_size = Vector2(303, 69)
+layout_mode = 0
+offset_top = 8.0
+offset_right = 303.0
+offset_bottom = 77.0
+mouse_filter = 1
+theme = ExtResource("1_l2t0t")
+theme_override_styles/panel = SubResource("StyleBoxFlat_w5e5w")
+
+[node name="HBox" type="HBoxContainer" parent="Entry"]
+auto_translate_mode = 1
+layout_mode = 0
+offset_right = 303.0
+offset_bottom = 50.0
+
+[node name="Panel" type="Panel" parent="Entry/HBox"]
+custom_minimum_size = Vector2(40, 69)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_m3e7l")
+
+[node name="Panel" type="Panel" parent="Entry/HBox/Panel"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+offset_top = 14.0
+offset_right = 40.0
+offset_bottom = 54.0
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_l3uw1")
+
+[node name="Label" type="Label" parent="Entry/HBox/Panel/Panel"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 0
+offset_top = -3.0
+offset_right = 40.0
+offset_bottom = 42.0
+theme_override_font_sizes/font_size = 32
+text = "-1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Info" type="VBoxContainer" parent="Entry/HBox"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(249, 0)
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="Label" type="HBoxContainer" parent="Entry/HBox/Info"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="AreaName" type="Label" parent="Entry/HBox/Info/Label"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(249, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "Living Room
+"
+clip_text = true
+
+[node name="Percent" type="Label" parent="Entry/HBox/Info"]
+auto_translate_mode = 1
+visible = false
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 0.5)
+theme_override_font_sizes/font_size = 18
+text = "0%
+"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Entry/HBox/Info"]
+auto_translate_mode = 1
+layout_mode = 2
+
+[node name="slider" type="HSlider" parent="Entry/HBox/Info/HBoxContainer"]
+auto_translate_mode = 1
+z_index = 1
+custom_minimum_size = Vector2(246, 34)
+layout_mode = 2
+mouse_filter = 1
+mouse_force_pass_scroll_events = false
+theme = SubResource("Theme_42sr0")
+max_value = 1.0
+step = 0.01
+value = 1.0
+scrollable = false
+
+[node name="Label" type="Label" parent="Entry/HBox/Info/HBoxContainer"]
+auto_translate_mode = 1
+visible = false
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "1.0"
+
+[node name="Delete" type="Button" parent="Entry"]
+modulate = Color(0.76662, 0.76662, 0.76662, 1)
+layout_mode = 0
+offset_left = 269.0
+offset_top = -12.0
+offset_right = 314.0
+offset_bottom = 33.0
+icon = ExtResource("3_e04yf")
+flat = true
+expand_icon = true
+
+[connection signal="gui_input" from="Entry/HBox" to="." method="_on_gui_input"]
+[connection signal="drag_ended" from="Entry/HBox/Info/HBoxContainer/slider" to="." method="_on_slider_drag_ended"]
+[connection signal="drag_started" from="Entry/HBox/Info/HBoxContainer/slider" to="." method="_on_slider_drag_started"]
+[connection signal="value_changed" from="Entry/HBox/Info/HBoxContainer/slider" to="." method="_on_slider_value_changed"]

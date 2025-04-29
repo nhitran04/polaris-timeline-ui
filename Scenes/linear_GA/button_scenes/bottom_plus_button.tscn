@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://bdb0pyrbtteys"]
+
+[ext_resource type="Script" path="res://Scripts/linear_ga_scripts/buttons/bottom_plus_button.gd" id="1_ebfup"]
+[ext_resource type="Texture2D" uid="uid://coq2foorqo114" path="res://Assets/img/add_button-01.png" id="1_qpjxn"]
+
+[node name="Control2" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+script = ExtResource("1_ebfup")
+
+[node name="BottomPlusButton" type="Button" parent="."]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+scale = Vector2(0.25, 0.25)
+icon = ExtResource("1_qpjxn")
+flat = true
+
+[connection signal="pressed" from="BottomPlusButton" to="." method="_on_bottom_plus_button_pressed"]

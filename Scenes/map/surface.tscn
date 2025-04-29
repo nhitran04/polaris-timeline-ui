@@ -1,0 +1,48 @@
+[gd_scene load_steps=7 format=3 uid="uid://00rbccllbkef"]
+
+[ext_resource type="Script" path="res://Scripts/map/surface.gd" id="1_f8rq8"]
+[ext_resource type="PackedScene" uid="uid://b6j4mal61e2ag" path="res://Scenes/map/label.tscn" id="2_t3s8p"]
+[ext_resource type="Script" path="res://Scripts/map/world_entity_collision_control.gd" id="3_8a2md"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_0ip5c"]
+viewport_path = NodePath("label/SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_na6e6"]
+resource_local_to_scene = true
+albedo_texture = SubResource("ViewportTexture_0ip5c")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oev0y"]
+render_priority = 2
+albedo_color = Color(0, 0.346382, 0.346876, 1)
+
+[node name="surface" type="Node3D" node_paths=PackedStringArray("label")]
+script = ExtResource("1_f8rq8")
+label = NodePath("label")
+
+[node name="label" parent="." node_paths=PackedStringArray("textedit") instance=ExtResource("2_t3s8p")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 2.1)
+material_override = SubResource("StandardMaterial3D_na6e6")
+textedit = NodePath("SubViewport/TextEdit")
+
+[node name="outline" type="Node3D" parent="."]
+
+[node name="nodes" type="Node3D" parent="."]
+
+[node name="faces" type="Node3D" parent="."]
+
+[node name="MeshStaticBody" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
+script = ExtResource("3_8a2md")
+
+[node name="mesh" type="MeshInstance3D" parent="MeshStaticBody"]
+material_override = SubResource("StandardMaterial3D_oev0y")
+transparency = 0.14
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshStaticBody"]
+
+[node name="waypoints" type="Node3D" parent="."]
+
+[connection signal="input_event" from="MeshStaticBody" to="." method="_on_mesh_static_body_input_event"]
+[connection signal="mouse_entered" from="MeshStaticBody" to="." method="_on_mesh_static_body_mouse_entered"]
+[connection signal="mouse_exited" from="MeshStaticBody" to="." method="_on_mesh_static_body_mouse_exited"]

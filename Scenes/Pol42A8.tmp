@@ -1,0 +1,471 @@
+[gd_scene load_steps=36 format=3 uid="uid://b1wp7qlcfddxn"]
+
+[ext_resource type="Script" path="res://Scripts/cameras/camera2d.gd" id="1_nwuhc"]
+[ext_resource type="Script" path="res://Scripts/experimentation/setups.gd" id="2_eqt4i"]
+[ext_resource type="Script" path="res://Scripts/experimentation/comm_i_frame.gd" id="3_h251p"]
+[ext_resource type="Script" path="res://Scripts/controller.gd" id="4_gpv7n"]
+[ext_resource type="PackedScene" uid="uid://csngfscdisslu" path="res://Scenes/map/world.tscn" id="5_06tec"]
+[ext_resource type="Script" path="res://Scripts/drawing_board/exceptions.gd" id="6_0mb8h"]
+[ext_resource type="Script" path="res://Scripts/comm/comm.gd" id="6_m8gax"]
+[ext_resource type="Texture2D" uid="uid://bg25drci6x40x" path="res://Assets/img/wait_icon-01.png" id="6_tlxl8"]
+[ext_resource type="Script" path="res://Scripts/drawing_board/wait_icon.gd" id="7_4gwhf"]
+[ext_resource type="Script" path="res://Scripts/domain.gd" id="7_cu5bx"]
+[ext_resource type="Script" path="res://Scripts/map/UI/side_panel.gd" id="8_hbbuv"]
+[ext_resource type="Script" path="res://Scripts/problem.gd" id="9_bspk7"]
+[ext_resource type="PackedScene" uid="uid://b37lnfln0im44" path="res://Scenes/ControlPanel/toggle_button_label.tscn" id="9_d5brj"]
+[ext_resource type="Texture2D" uid="uid://cckei2prxki4n" path="res://Assets/img/drawing_board_icon-01.png" id="10_b3ieu"]
+[ext_resource type="Script" path="res://Scripts/background.gd" id="12_0mfp8"]
+[ext_resource type="Texture2D" uid="uid://boift3e26ijum" path="res://Assets/img/map_icon_toggled-01.png" id="12_4f8m7"]
+[ext_resource type="Texture2D" uid="uid://dnal5h7p0y1r3" path="res://Assets/img/play_icon-01.png" id="12_ait4j"]
+[ext_resource type="Texture2D" uid="uid://bkcxu7tkp0v8b" path="res://Assets/img/build_icon_toggled-01.png" id="13_ola2k"]
+[ext_resource type="Texture2D" uid="uid://bbvfo51yya7yp" path="res://Assets/img/nav_mesh_icon-01.png" id="13_qxy7p"]
+[ext_resource type="Texture2D" uid="uid://nr81utdltpxs" path="res://Assets/img/param_icon-01.png" id="14_4uck7"]
+[ext_resource type="Texture2D" uid="uid://bs4kh11yi5o5u" path="res://Assets/img/uncertainty_icon-01.png" id="15_4v70r"]
+[ext_resource type="Texture2D" uid="uid://cnjxlw2pyecoh" path="res://Assets/img/save_icon-01.png" id="16_2e1m6"]
+[ext_resource type="Texture2D" uid="uid://dus45tmkp628d" path="res://Assets/img/load_icon-01.png" id="17_dv3yy"]
+
+[sub_resource type="Curve2D" id="Curve2D_gichs"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 545, 416, -266.448, 12.7331, 266.448, -12.7331, 996.796, 469, 0, 0, 0, 0, 1563.38, 504)
+}
+point_count = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ad35s"]
+bg_color = Color(0.957055, 0.950665, 0.942942, 1)
+border_color = Color(0.670689, 0.67069, 0.670689, 1)
+
+[sub_resource type="Theme" id="Theme_re0vq"]
+Panel/styles/panel = SubResource("StyleBoxFlat_ad35s")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t0ko6"]
+bg_color = Color(1, 1, 1, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p3lns"]
+bg_color = Color(1, 1, 1, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1pogd"]
+bg_color = Color(1, 1, 1, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pwx6v"]
+bg_color = Color(1, 1, 1, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x8dv0"]
+bg_color = Color(0.687, 0.687, 0.687, 0)
+
+[sub_resource type="Theme" id="Theme_8hwva"]
+Button/styles/disabled = SubResource("StyleBoxFlat_t0ko6")
+Button/styles/focus = SubResource("StyleBoxFlat_p3lns")
+Button/styles/hover = SubResource("StyleBoxFlat_1pogd")
+Button/styles/normal = SubResource("StyleBoxFlat_pwx6v")
+Button/styles/pressed = SubResource("StyleBoxFlat_x8dv0")
+Panel/styles/panel = null
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3nhh0"]
+bg_color = Color(0.683077, 0.683077, 0.683077, 1)
+
+[sub_resource type="Theme" id="Theme_hox1n"]
+Panel/styles/panel = SubResource("StyleBoxFlat_3nhh0")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3ogye"]
+bg_color = Color(1, 1, 1, 1)
+
+[node name="Polaris" type="Node"]
+script = ExtResource("4_gpv7n")
+options = {
+"accuracy_analysis_curr_room_only": false,
+"actions_timeline": true,
+"camera_tutorial": false,
+"debug_path_plan": false,
+"domain": "food_assembly",
+"goals_timeline": true,
+"load_uncert": false,
+"load_uncert_file": "pilot/paint.txt",
+"log_to_backend": false,
+"log_to_frontend": false,
+"maintenance_goals": false,
+"manual_analysis": false,
+"map": "default_map",
+"replay": false,
+"replay_file": "0log_simple_map_zoom",
+"save": "food_assembly_map.save",
+"slider_accuracy_center_only": false,
+"uncert_analysis": false,
+"uncert_experiment": false,
+"uncert_paint": false,
+"uncert_rank": false,
+"uncert_sliders": true
+}
+preloaded_saves = null
+
+[node name="Experiment" type="Node" parent="."]
+script = ExtResource("2_eqt4i")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Experiment"]
+visible = false
+
+[node name="Label" type="Label" parent="Experiment/CanvasLayer"]
+offset_right = 339.0
+offset_bottom = 273.0
+theme_override_font_sizes/font_size = 0
+text = "test test test"
+
+[node name="Comm_iFrame" type="Node" parent="Experiment"]
+script = ExtResource("3_h251p")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(1280, 800)
+script = ExtResource("1_nwuhc")
+
+[node name="Path2D" type="Path2D" parent="."]
+position = Vector2(20, -159)
+scale = Vector2(0.949552, 1)
+curve = SubResource("Curve2D_gichs")
+
+[node name="UILayerDrawingBoard" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="StatusIndicators" type="Control" parent="UILayerDrawingBoard"]
+layout_mode = 3
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+grow_horizontal = 0
+mouse_filter = 2
+
+[node name="Exceptions" type="VBoxContainer" parent="UILayerDrawingBoard/StatusIndicators"]
+visible = false
+layout_mode = 0
+offset_left = -800.0
+offset_top = 10.0
+offset_right = -300.0
+offset_bottom = 73.0
+alignment = 1
+script = ExtResource("6_0mb8h")
+
+[node name="wait_icon" type="Sprite2D" parent="UILayerDrawingBoard/StatusIndicators"]
+visible = false
+position = Vector2(-175, 57)
+scale = Vector2(0.43, 0.43)
+texture = ExtResource("6_tlxl8")
+script = ExtResource("7_4gwhf")
+
+[node name="ControlPanel" type="Panel" parent="UILayerDrawingBoard"]
+auto_translate_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -100.0
+offset_bottom = 60.0
+grow_horizontal = 0
+theme = SubResource("Theme_re0vq")
+script = ExtResource("8_hbbuv")
+
+[node name="Buttons" type="VBoxContainer" parent="UILayerDrawingBoard/ControlPanel"]
+auto_translate_mode = 1
+layout_mode = 0
+offset_left = -300.0
+offset_top = 20.0
+offset_right = 100.0
+offset_bottom = 312.0
+mouse_filter = 2
+theme_override_constants/separation = 8
+alignment = 1
+
+[node name="ToggleDrawingBoard" type="HBoxContainer" parent="UILayerDrawingBoard/ControlPanel/Buttons"]
+auto_translate_mode = 1
+layout_mode = 2
+mouse_filter = 2
+alignment = 1
+
+[node name="ToggleButtonLabel" parent="UILayerDrawingBoard/ControlPanel/Buttons/ToggleDrawingBoard" instance=ExtResource("9_d5brj")]
+layout_mode = 2
+text = "[right]Drawing Board[/right] "
+
+[node name="Button" type="Button" parent="UILayerDrawingBoard/ControlPanel/Buttons/ToggleDrawingBoard"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+theme = SubResource("Theme_8hwva")
+toggle_mode = true
+icon = ExtResource("10_b3ieu")
+flat = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="TogglePlay" type="HBoxContainer" parent="UILayerDrawingBoard/ControlPanel/Buttons"]
+auto_translate_mode = 1
+layout_mode = 2
+mouse_filter = 2
+alignment = 1
+
+[node name="ToggleButtonLabel" parent="UILayerDrawingBoard/ControlPanel/Buttons/TogglePlay" instance=ExtResource("9_d5brj")]
+layout_mode = 2
+text = "[right]Simulator[/right] "
+
+[node name="Button" type="Button" parent="UILayerDrawingBoard/ControlPanel/Buttons/TogglePlay"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+theme = SubResource("Theme_8hwva")
+toggle_mode = true
+icon = ExtResource("12_ait4j")
+flat = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="ToggleMap" type="HBoxContainer" parent="UILayerDrawingBoard/ControlPanel/Buttons"]
+auto_translate_mode = 1
+layout_mode = 2
+mouse_filter = 2
+alignment = 1
+
+[node name="ToggleButtonLabel" parent="UILayerDrawingBoard/ControlPanel/Buttons/ToggleMap" instance=ExtResource("9_d5brj")]
+layout_mode = 2
+text = "[right]Map[/right] "
+
+[node name="Button" type="Button" parent="UILayerDrawingBoard/ControlPanel/Buttons/ToggleMap"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+theme = SubResource("Theme_8hwva")
+toggle_mode = true
+button_pressed = true
+icon = ExtResource("12_4f8m7")
+flat = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="ExpansionPanel" type="Panel" parent="UILayerDrawingBoard/ControlPanel/Buttons"]
+auto_translate_mode = 1
+layout_mode = 2
+mouse_filter = 2
+
+[node name="MapOptions" type="VBoxContainer" parent="UILayerDrawingBoard/ControlPanel/Buttons/ExpansionPanel"]
+auto_translate_mode = 1
+layout_mode = 2
+offset_right = 100.0
+offset_bottom = 200.0
+mouse_filter = 2
+theme_override_constants/separation = 8
+
+[node name="CustomizeOptionsSeparator" type="HBoxContainer" parent="UILayerDrawingBoard/ControlPanel/Buttons/ExpansionPanel/MapOptions"]
+auto_translate_mode = 1
+layout_mode = 2
+mouse_filter = 2
+alignment = 1
+
+[node name="ToggleButtonLabel" parent="UILayerDrawingBoard/ControlPanel/Buttons/ExpansionPanel/MapOptions/CustomizeOptionsSeparator" instance=ExtResource("9_d5brj")]
+custom_minimum_size = Vector2(296, 20)
+layout_mode = 2
+text = "[right][/right] "
+scroll_active = false
+
+[node name="Separator" type="Panel" parent="UILayerDrawingBoard/ControlPanel/Buttons/ExpansionPanel/MapOptions/CustomizeOptionsSeparator"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(80, 1)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = SubResource("Theme_hox1n")
+
+[node name="Build" type="HBoxContainer" parent="UILayerDrawingBoard/ControlPanel/Buttons/ExpansionPanel/MapOptions"]
+auto_translate_mode = 1
+layout_mode = 2
+mouse_filter = 2
+alignment = 1
+
+[node name="ToggleButtonLabel" parent="UILayerDrawingBoard/ControlPanel/Buttons/ExpansionPanel/MapOptions/Build" instance=ExtResource("9_d5brj")]
+layout_mode = 2
+text = "[right]Build[/right] "
+
+[node name="Button" type="Button" parent="UILayerDrawingBoard/ControlPanel/Buttons/ExpansionPanel/MapOptions/Build"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(100, 60)
+layout_mode = 2
+theme = SubResource("Theme_8hwva")
+toggle_mode = true
+icon = ExtResource("13_ola2k")
+icon_alignment = 1
+expand_icon = true
+
+[node name="Parameterize" type="HBoxContainer" parent="UILayerDrawingBoard/ControlPanel/Buttons/ExpansionPanel/MapOptions"]
+auto_translate_mode = 1
+layout_mode = 2
+mouse_filter = 2
+alignment = 1
+
+[node name="ToggleButtonLabel" parent="UILayerDrawingBoard/ControlPanel/Buttons/ExpansionPanel/MapOptions/Parameterize" instance=ExtResource("9_d5brj")]
+layout_mode = 2
+text = "[right]Parameterize[/right] "
+
+[node name="Button" type="Button" parent="UILayerDrawingBoard/ControlPanel/Buttons/ExpansionPanel/MapOptions/Parameterize"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(100, 60)
+layout_mode = 2
+theme = SubResource("Theme_8hwva")
+toggle_mode = true
+button_pressed = true
+icon = ExtResource("14_4uck7")
+flat = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="MakeNavMesh" type="HBoxContainer" parent="UILayerDrawingBoard/ControlPanel/Buttons/ExpansionPanel/MapOptions"]
+auto_translate_mode = 1
+layout_mode = 2
+mouse_filter = 2
+alignment = 1
+
+[node name="ToggleButtonLabel" parent="UILayerDrawingBoard/ControlPanel/Buttons/ExpansionPanel/MapOptions/MakeNavMesh" instance=ExtResource("9_d5brj")]
+layout_mode = 2
+text = "[right]Make Nav Mesh[/right] "
+
+[node name="Button" type="Button" parent="UILayerDrawingBoard/ControlPanel/Buttons/ExpansionPanel/MapOptions/MakeNavMesh"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(100, 60)
+layout_mode = 2
+theme = SubResource("Theme_8hwva")
+toggle_mode = true
+button_pressed = true
+icon = ExtResource("13_qxy7p")
+flat = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="SetUncertainty" type="HBoxContainer" parent="UILayerDrawingBoard/ControlPanel/Buttons/ExpansionPanel/MapOptions"]
+auto_translate_mode = 1
+layout_mode = 2
+mouse_filter = 2
+alignment = 1
+
+[node name="ToggleButtonLabel" parent="UILayerDrawingBoard/ControlPanel/Buttons/ExpansionPanel/MapOptions/SetUncertainty" instance=ExtResource("9_d5brj")]
+layout_mode = 2
+text = "[right]Set Uncertainty[/right] "
+
+[node name="Button" type="Button" parent="UILayerDrawingBoard/ControlPanel/Buttons/ExpansionPanel/MapOptions/SetUncertainty"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(100, 60)
+layout_mode = 2
+theme = SubResource("Theme_8hwva")
+toggle_mode = true
+button_pressed = true
+icon = ExtResource("15_4v70r")
+flat = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="SaveLoadSeparator" type="HBoxContainer" parent="UILayerDrawingBoard/ControlPanel/Buttons/ExpansionPanel/MapOptions"]
+auto_translate_mode = 1
+layout_mode = 2
+mouse_filter = 2
+alignment = 1
+
+[node name="ToggleButtonLabel" parent="UILayerDrawingBoard/ControlPanel/Buttons/ExpansionPanel/MapOptions/SaveLoadSeparator" instance=ExtResource("9_d5brj")]
+custom_minimum_size = Vector2(296, 20)
+layout_mode = 2
+text = "[right][/right] "
+scroll_active = false
+
+[node name="Separator1" type="Panel" parent="UILayerDrawingBoard/ControlPanel/Buttons/ExpansionPanel/MapOptions/SaveLoadSeparator"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(80, 1)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = SubResource("Theme_hox1n")
+
+[node name="Save" type="HBoxContainer" parent="UILayerDrawingBoard/ControlPanel/Buttons/ExpansionPanel/MapOptions"]
+auto_translate_mode = 1
+layout_mode = 2
+mouse_filter = 2
+alignment = 1
+
+[node name="ToggleButtonLabel" parent="UILayerDrawingBoard/ControlPanel/Buttons/ExpansionPanel/MapOptions/Save" instance=ExtResource("9_d5brj")]
+layout_mode = 2
+text = "[right]Save[/right] "
+
+[node name="Button" type="Button" parent="UILayerDrawingBoard/ControlPanel/Buttons/ExpansionPanel/MapOptions/Save"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(100, 60)
+layout_mode = 2
+theme = SubResource("Theme_8hwva")
+icon = ExtResource("16_2e1m6")
+flat = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="Load" type="HBoxContainer" parent="UILayerDrawingBoard/ControlPanel/Buttons/ExpansionPanel/MapOptions"]
+auto_translate_mode = 1
+layout_mode = 2
+mouse_filter = 2
+alignment = 1
+
+[node name="ToggleButtonLabel" parent="UILayerDrawingBoard/ControlPanel/Buttons/ExpansionPanel/MapOptions/Load" instance=ExtResource("9_d5brj")]
+layout_mode = 2
+text = "[right]Load[/right] "
+
+[node name="Button" type="Button" parent="UILayerDrawingBoard/ControlPanel/Buttons/ExpansionPanel/MapOptions/Load"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(100, 60)
+layout_mode = 2
+theme = SubResource("Theme_8hwva")
+icon = ExtResource("17_dv3yy")
+flat = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="Comm" type="Node" parent="." node_paths=PackedStringArray("status_indicators")]
+script = ExtResource("6_m8gax")
+ip = "127.0.0.1"
+status_indicators = NodePath("../UILayerDrawingBoard/StatusIndicators")
+
+[node name="Problem" type="Node" parent="."]
+script = ExtResource("9_bspk7")
+
+[node name="Domain" type="Node" parent="Problem"]
+script = ExtResource("7_cu5bx")
+
+[node name="World" parent="Problem" node_paths=PackedStringArray("mesh3d", "map", "camera", "user_drawer", "add_menu", "editor_ui", "planvis_ui", "view_control_ui", "uncert_controls_ui", "key_ui", "world_db") instance=ExtResource("5_06tec")]
+mesh3d = NodePath("Map/Map/MapMesh")
+map = NodePath("Map/Map")
+camera = NodePath("Map/Camera3D")
+user_drawer = NodePath("Map/UILayerMapEditor/UserDrawer")
+add_menu = NodePath("Map/UILayerMapEditor/BuildMenu")
+editor_ui = NodePath("Map/UILayerMapEditor")
+planvis_ui = NodePath("Map/UILayerPlanViz")
+view_control_ui = NodePath("Map/UILayerMapEditor/ViewControl")
+uncert_controls_ui = NodePath("Map/UILayerMapEditor/UncertControls")
+key_ui = NodePath("Map/UILayerMapEditor/Key")
+world_db = NodePath("world_database")
+
+[node name="Background" type="Panel" parent="."]
+visible = false
+z_index = -1
+offset_left = -12321.0
+offset_top = -7781.0
+offset_right = 13700.0
+offset_bottom = 9472.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_3ogye")
+script = ExtResource("12_0mfp8")
+
+[connection signal="mouse_entered" from="UILayerDrawingBoard/ControlPanel" to="UILayerDrawingBoard/ControlPanel" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="UILayerDrawingBoard/ControlPanel" to="UILayerDrawingBoard/ControlPanel" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="UILayerDrawingBoard/ControlPanel/Buttons/ToggleDrawingBoard/Button" to="UILayerDrawingBoard/ControlPanel/Buttons/ToggleDrawingBoard/ToggleButtonLabel" method="_show"]
+[connection signal="mouse_exited" from="UILayerDrawingBoard/ControlPanel/Buttons/ToggleDrawingBoard/Button" to="UILayerDrawingBoard/ControlPanel/Buttons/ToggleDrawingBoard/ToggleButtonLabel" method="_hide"]
+[connection signal="mouse_entered" from="UILayerDrawingBoard/ControlPanel/Buttons/TogglePlay/Button" to="UILayerDrawingBoard/ControlPanel/Buttons/TogglePlay/ToggleButtonLabel" method="_show"]
+[connection signal="mouse_exited" from="UILayerDrawingBoard/ControlPanel/Buttons/TogglePlay/Button" to="UILayerDrawingBoard/ControlPanel/Buttons/TogglePlay/ToggleButtonLabel" method="_hide"]
+[connection signal="mouse_entered" from="UILayerDrawingBoard/ControlPanel/Buttons/ToggleMap/Button" to="UILayerDrawingBoard/ControlPanel/Buttons/ToggleMap/ToggleButtonLabel" method="_show"]
+[connection signal="mouse_exited" from="UILayerDrawingBoard/ControlPanel/Buttons/ToggleMap/Button" to="UILayerDrawingBoard/ControlPanel/Buttons/ToggleMap/ToggleButtonLabel" method="_hide"]
+[connection signal="mouse_entered" from="UILayerDrawingBoard/ControlPanel/Buttons/ExpansionPanel/MapOptions/Build/Button" to="UILayerDrawingBoard/ControlPanel/Buttons/ExpansionPanel/MapOptions/Build/ToggleButtonLabel" method="_show"]
+[connection signal="mouse_exited" from="UILayerDrawingBoard/ControlPanel/Buttons/ExpansionPanel/MapOptions/Build/Button" to="UILayerDrawingBoard/ControlPanel/Buttons/ExpansionPanel/MapOptions/Build/ToggleButtonLabel" method="_hide"]
+[connection signal="mouse_entered" from="UILayerDrawingBoard/ControlPanel/Buttons/ExpansionPanel/MapOptions/Parameterize/Button" to="UILayerDrawingBoard/ControlPanel/Buttons/ExpansionPanel/MapOptions/Parameterize/ToggleButtonLabel" method="_show"]
+[connection signal="mouse_exited" from="UILayerDrawingBoard/ControlPanel/Buttons/ExpansionPanel/MapOptions/Parameterize/Button" to="UILayerDrawingBoard/ControlPanel/Buttons/ExpansionPanel/MapOptions/Parameterize/ToggleButtonLabel" method="_hide"]
+[connection signal="mouse_entered" from="UILayerDrawingBoard/ControlPanel/Buttons/ExpansionPanel/MapOptions/MakeNavMesh/Button" to="UILayerDrawingBoard/ControlPanel/Buttons/ExpansionPanel/MapOptions/MakeNavMesh/ToggleButtonLabel" method="_show"]
+[connection signal="mouse_exited" from="UILayerDrawingBoard/ControlPanel/Buttons/ExpansionPanel/MapOptions/MakeNavMesh/Button" to="UILayerDrawingBoard/ControlPanel/Buttons/ExpansionPanel/MapOptions/MakeNavMesh/ToggleButtonLabel" method="_hide"]
+[connection signal="mouse_entered" from="UILayerDrawingBoard/ControlPanel/Buttons/ExpansionPanel/MapOptions/SetUncertainty/Button" to="UILayerDrawingBoard/ControlPanel/Buttons/ExpansionPanel/MapOptions/SetUncertainty/ToggleButtonLabel" method="_show"]
+[connection signal="mouse_exited" from="UILayerDrawingBoard/ControlPanel/Buttons/ExpansionPanel/MapOptions/SetUncertainty/Button" to="UILayerDrawingBoard/ControlPanel/Buttons/ExpansionPanel/MapOptions/SetUncertainty/ToggleButtonLabel" method="_hide"]
+[connection signal="mouse_entered" from="UILayerDrawingBoard/ControlPanel/Buttons/ExpansionPanel/MapOptions/Save/Button" to="UILayerDrawingBoard/ControlPanel/Buttons/ExpansionPanel/MapOptions/Save/ToggleButtonLabel" method="_show"]
+[connection signal="mouse_exited" from="UILayerDrawingBoard/ControlPanel/Buttons/ExpansionPanel/MapOptions/Save/Button" to="UILayerDrawingBoard/ControlPanel/Buttons/ExpansionPanel/MapOptions/Save/ToggleButtonLabel" method="_hide"]
+[connection signal="mouse_entered" from="UILayerDrawingBoard/ControlPanel/Buttons/ExpansionPanel/MapOptions/Load/Button" to="UILayerDrawingBoard/ControlPanel/Buttons/ExpansionPanel/MapOptions/Load/ToggleButtonLabel" method="_show"]
+[connection signal="mouse_exited" from="UILayerDrawingBoard/ControlPanel/Buttons/ExpansionPanel/MapOptions/Load/Button" to="UILayerDrawingBoard/ControlPanel/Buttons/ExpansionPanel/MapOptions/Load/ToggleButtonLabel" method="_hide"]

@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://bbokxt5dbd1ro"]
+
+[ext_resource type="Script" path="res://Scripts/simulator/objects/cup.gd" id="1_yrb3a"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_0gv2c"]
+load_path = "res://.godot/imported/empty-cup.png-623a508a70d8d4ed425520085a930f48.ctex"
+
+[node name="cup1" type="StaticBody2D"]
+z_index = 1
+script = ExtResource("1_yrb3a")
+
+[node name="cup_sprite" type="Sprite2D" parent="."]
+scale = Vector2(0.7, 0.7)
+texture = SubResource("CompressedTexture2D_0gv2c")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(0, -2)
+polygon = PackedVector2Array(-5, 7, -5, -5, 5, -5, 5, 7)

@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://b4icr76r6mp1y"]
+
+[ext_resource type="Texture2D" uid="uid://bp3kxmnqw27jx" path="res://Assets/img/node1_v2.png" id="1_v7ke1"]
+
+[node name="Checkpoint" type="Sprite2D"]
+top_level = true
+position = Vector2(334, 873)
+texture = ExtResource("1_v7ke1")

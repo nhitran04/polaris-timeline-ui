@@ -1,0 +1,70 @@
+[gd_scene load_steps=15 format=3 uid="uid://0os5kipwbwgp"]
+
+[ext_resource type="StyleBox" uid="uid://66qmiclqq704" path="res://Resources/scrollbar.tres" id="1_hamlb"]
+[ext_resource type="StyleBox" uid="uid://c1pcr3le6nohu" path="res://Resources/scrollbar_highlighted.tres" id="2_f5dow"]
+[ext_resource type="StyleBox" uid="uid://ds0nbejp6in8t" path="res://Resources/style_box_flat_bordered.tres" id="3_35dji"]
+[ext_resource type="Texture2D" uid="uid://coq2foorqo114" path="res://Assets/img/add_button-01.png" id="4_nhaus"]
+[ext_resource type="Script" path="res://Scripts/demo_code/GoalsNewCheckpt.gd" id="5_agdr2"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_tfhun"]
+color = Color(0, 0, 0, 0)
+thickness = 80
+
+[sub_resource type="Theme" id="Theme_augk2"]
+HScrollBar/styles/grabber = ExtResource("1_hamlb")
+HScrollBar/styles/grabber_pressed = ExtResource("2_f5dow")
+HScrollBar/styles/scroll = SubResource("StyleBoxLine_tfhun")
+ScrollContainer/styles/panel = ExtResource("3_35dji")
+
+[sub_resource type="Theme" id="Theme_j7wwo"]
+BoxContainer/constants/separation = 25
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1orq8"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vcnwt"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_02rxc"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kdh1p"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qf5u8"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="Theme" id="Theme_t7k8i"]
+Button/styles/disabled = SubResource("StyleBoxFlat_1orq8")
+Button/styles/focus = SubResource("StyleBoxFlat_vcnwt")
+Button/styles/hover = SubResource("StyleBoxFlat_02rxc")
+Button/styles/normal = SubResource("StyleBoxFlat_kdh1p")
+Button/styles/pressed = SubResource("StyleBoxFlat_qf5u8")
+
+[node name="ScrollContainer" type="ScrollContainer"]
+offset_left = 88.0
+offset_top = 472.0
+offset_right = 2488.0
+offset_bottom = 1072.0
+grow_horizontal = 0
+theme = SubResource("Theme_augk2")
+follow_focus = true
+vertical_scroll_mode = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+custom_minimum_size = Vector2(2400, 406)
+layout_mode = 2
+theme = SubResource("Theme_j7wwo")
+alignment = 2
+
+[node name="Button" type="Button" parent="HBoxContainer"]
+custom_minimum_size = Vector2(105, 200)
+layout_mode = 2
+size_flags_vertical = 4
+theme = SubResource("Theme_t7k8i")
+icon = ExtResource("4_nhaus")
+icon_alignment = 1
+expand_icon = true
+script = ExtResource("5_agdr2")
+
+[connection signal="pressed" from="HBoxContainer/Button" to="HBoxContainer/Button" method="_on_pressed"]

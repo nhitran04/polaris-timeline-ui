@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=3 uid="uid://c44eh55jcf4pr"]
+
+[ext_resource type="Script" path="res://Scripts/map/area_node.gd" id="1_orcf1"]
+[ext_resource type="Script" path="res://Scripts/map/world_entity_collision_control.gd" id="2_w3wf2"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4ejr3"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_f8sle"]
+radius = 0.21
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_p2ilr"]
+size = Vector3(20, 20, 0)
+
+[node name="AreaNode" type="CSGSphere3D"]
+radius = 0.2
+material = SubResource("StandardMaterial3D_4ejr3")
+script = ExtResource("1_orcf1")
+
+[node name="NodeArea" type="Area3D" parent="."]
+script = ExtResource("2_w3wf2")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NodeArea"]
+shape = SubResource("SphereShape3D_f8sle")
+
+[node name="DrawArea" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DrawArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.1)
+shape = SubResource("BoxShape3D_p2ilr")
+disabled = true
+
+[connection signal="input_event" from="NodeArea" to="." method="_on_node_area_input_event"]
+[connection signal="input_event" from="DrawArea" to="." method="_on_draw_area_input_event"]

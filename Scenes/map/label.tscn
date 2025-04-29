@@ -1,0 +1,84 @@
+[gd_scene load_steps=11 format=3 uid="uid://b6j4mal61e2ag"]
+
+[ext_resource type="Script" path="res://Scripts/map/label.gd" id="1_xq5fr"]
+[ext_resource type="Script" path="res://Scripts/map/label_text_edit.gd" id="2_qi6bq"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_fmw6l"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_img64"]
+resource_local_to_scene = true
+render_priority = 4
+transparency = 1
+albedo_texture = SubResource("ViewportTexture_fmw6l")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ukfne"]
+lightmap_size_hint = Vector2i(22, 6)
+uv2_padding = 2.78
+size = Vector2(4, 0.8)
+center_offset = Vector3(1.2, 0, 0.1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ep02x"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_color = Color(0.412683, 0.938122, 0.240563, 1)
+shadow_color = Color(0, 0, 0, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7qfaw"]
+bg_color = Color(0.952, 0.952, 0.952, 0)
+shadow_color = Color(0, 0, 0, 0)
+
+[sub_resource type="Theme" id="Theme_uglpv"]
+TextEdit/colors/background_color = Color(0, 0, 0, 0)
+TextEdit/colors/caret_color = Color(0, 0, 0, 0)
+TextEdit/constants/caret_width = 4
+TextEdit/styles/focus = SubResource("StyleBoxFlat_ep02x")
+TextEdit/styles/normal = SubResource("StyleBoxFlat_7qfaw")
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_m3pj5"]
+data = PackedVector3Array(2, 0, 0.4, -2, 0, 0.4, 2, 0, -0.4, -2, 0, 0.4, -2, 0, -0.4, 2, 0, -0.4)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xtt5d"]
+size = Vector3(20, 20, 0)
+
+[node name="label" type="MeshInstance3D" node_paths=PackedStringArray("textedit")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_img64")
+mesh = SubResource("PlaneMesh_ukfne")
+script = ExtResource("1_xq5fr")
+textedit = NodePath("SubViewport/TextEdit")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+transparent_bg = true
+physics_object_picking = true
+size = Vector2i(2000, 400)
+
+[node name="TextEdit" type="TextEdit" parent="SubViewport"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(2000, 400)
+offset_right = 2000.0
+offset_bottom = 400.0
+theme = SubResource("Theme_uglpv")
+theme_override_colors/current_line_color = Color(0, 0, 0, 0)
+theme_override_colors/background_color = Color(0, 0, 0, 0)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 200
+text = "unknown"
+placeholder_text = "enter name"
+wrap_mode = 1
+caret_blink = true
+script = ExtResource("2_qi6bq")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_m3pj5")
+
+[node name="DrawArea" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1.19249e-08, 1, 0, -1, 1.19249e-08, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DrawArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.1)
+shape = SubResource("BoxShape3D_xtt5d")
+disabled = true
+
+[connection signal="input_event" from="DrawArea" to="." method="_on_draw_area_input_event"]

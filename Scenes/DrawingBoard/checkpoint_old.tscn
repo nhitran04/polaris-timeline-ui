@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=3 uid="uid://cn4qmnbjnh1gh"]
+
+[ext_resource type="StyleBox" uid="uid://cq8t5it8chuqa" path="res://Resources/new_style_box_flat.tres" id="1_o8l21"]
+
+[sub_resource type="Theme" id="Theme_1eagg"]
+Panel/styles/panel = ExtResource("1_o8l21")
+
+[sub_resource type="Theme" id="Theme_qq0n6"]
+default_font_size = 34
+
+[node name="Checkpoint" type="Panel"]
+custom_minimum_size = Vector2(500, 300)
+offset_right = 500.0
+offset_bottom = 300.0
+theme = SubResource("Theme_1eagg")
+
+[node name="OptionButton" type="OptionButton" parent="."]
+layout_mode = 0
+offset_left = 66.0
+offset_top = 44.0
+offset_right = 429.0
+offset_bottom = 106.0
+theme = SubResource("Theme_qq0n6")
+selected = 0
+fit_to_longest_item = false
+item_count = 3
+popup/item_0/text = "no selection"
+popup/item_0/id = 2
+popup/item_1/text = "agent_in"
+popup/item_1/id = 0
+popup/item_2/text = "agent_carrying"
+popup/item_2/id = 1

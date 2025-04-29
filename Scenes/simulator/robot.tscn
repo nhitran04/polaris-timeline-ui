@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://cfhs5qi20wmld"]
+
+[ext_resource type="Script" path="res://Scripts/simulator/robot_sprite.gd" id="1_3w6vm"]
+[ext_resource type="Texture2D" uid="uid://c2o2nd0kdjqns" path="res://Assets/img/sprites/robot/forward.png" id="2_f2eax"]
+[ext_resource type="Script" path="res://Scripts/simulator/character_collider.gd" id="3_hmx4a"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mqt77"]
+size = Vector2(45, 27)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_p0u8q"]
+load_path = "res://.godot/imported/attention.png-41641368f8e01177818a9aa2f191fa86.ctex"
+
+[node name="Robot" type="CharacterBody2D"]
+script = ExtResource("1_3w6vm")
+
+[node name="RobotSprite" type="Sprite2D" parent="."]
+position = Vector2(0, -24)
+scale = Vector2(0.98, 0.98)
+texture = ExtResource("2_f2eax")
+
+[node name="FloorBounds" type="CollisionShape2D" parent="."]
+position = Vector2(0, 9.5)
+shape = SubResource("RectangleShape2D_mqt77")
+script = ExtResource("3_hmx4a")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+avoidance_enabled = true
+
+[node name="SimGripper" type="Node2D" parent="."]
+position = Vector2(0, -35)
+
+[node name="alert" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(25, -91)
+texture = SubResource("CompressedTexture2D_p0u8q")

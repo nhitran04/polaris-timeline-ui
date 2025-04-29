@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://dpsj35p6lgqpi"]
+
+[ext_resource type="PackedScene" uid="uid://w0yoa6h4yxdq" path="res://Scenes/DrawingBoard/checkpoint/checkpoint.tscn" id="1_d3a2s"]
+[ext_resource type="Script" path="res://Scripts/linear_ga_scripts/timeline_checkpoints/init_checkpoint.gd" id="2_wcwbu"]
+
+[node name="Checkpoint2" instance=ExtResource("1_d3a2s")]
+script = ExtResource("2_wcwbu")
+
+[node name="MainPanel" parent="UI" index="0"]
+layout_mode = 1
+offset_left = 0.0
+offset_right = 712.0
+mouse_filter = 2
+
+[node name="CancelButton" parent="UI/MainPanel/PanelItems/Padding" index="0"]
+mouse_filter = 1
+
+[connection signal="pressed" from="UI/MainPanel/PanelItems/Padding/CancelButton" to="." method="_on_cancel_button_pressed"]

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dwaoi7qr0gclv"]
+
+[ext_resource type="Script" path="res://Scripts/comm/push_goal_automaton_comm.gd" id="1_gs648"]
+
+[node name="PushGoalAutomaton" type="HTTPRequest"]
+script = ExtResource("1_gs648")

@@ -1,0 +1,34 @@
+[gd_scene load_steps=6 format=3 uid="uid://bhxl1ot7jt3rw"]
+
+[ext_resource type="Script" path="res://Scripts/simulator/caregiver_sprite.gd" id="1_x05qs"]
+[ext_resource type="Script" path="res://Scripts/simulator/character_collider.gd" id="3_gnnhn"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_cwpbd"]
+load_path = "res://.godot/imported/caregiver-front.png-1eb9f8fec47752bb6702b8f233db7655.ctex"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mqt77"]
+size = Vector2(32, 13)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_knv05"]
+load_path = "res://.godot/imported/approval.png-75c7cb9093f36b275d207447828e2285.ctex"
+
+[node name="caregiver" type="CharacterBody2D"]
+script = ExtResource("1_x05qs")
+
+[node name="CaregiverSprite" type="Sprite2D" parent="."]
+position = Vector2(0, -24)
+scale = Vector2(0.98, 0.98)
+texture = SubResource("CompressedTexture2D_cwpbd")
+
+[node name="FloorBounds" type="CollisionShape2D" parent="."]
+position = Vector2(0, 3)
+shape = SubResource("RectangleShape2D_mqt77")
+script = ExtResource("3_gnnhn")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+avoidance_enabled = true
+
+[node name="approval" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(20, -56)
+texture = SubResource("CompressedTexture2D_knv05")

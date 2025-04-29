@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://0o2l05rws6lw"]
+
+[ext_resource type="Script" path="res://Scripts/goal_automata/mg_checkpoint_maintenance_goal.gd" id="1_txvl2"]
+
+[node name="CheckButton" type="CheckButton"]
+auto_translate_mode = 1
+text = "Maintenance Goal  Placeholder"
+script = ExtResource("1_txvl2")

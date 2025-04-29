@@ -1,0 +1,22 @@
+[gd_scene load_steps=2 format=3 uid="uid://by2uupf1cbupl"]
+
+[ext_resource type="Script" path="res://Scripts/drawing_board/exception.gd" id="1_676kd"]
+
+[node name="Exception" type="HBoxContainer"]
+auto_translate_mode = 1
+offset_right = 1000.0
+offset_bottom = 45.0
+size_flags_horizontal = 8
+theme_override_constants/separation = 12
+script = ExtResource("1_676kd")
+
+[node name="message" type="Label" parent="."]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(600, 0)
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0, 0, 0, 0.254902)
+theme_override_font_sizes/font_size = 32
+text = "Valid plan!"
+horizontal_alignment = 2
+autowrap_mode = 2

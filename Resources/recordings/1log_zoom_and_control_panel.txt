@@ -1,0 +1,33 @@
+1894 - {'subject': 'options', 'data': {'debug_path_plan': False, 'domain': 'food_assembly', 'instance_id': '1720278385.453', 'log_to_backend': True, 'maintenance_goals': False, 'map': 'default_map', 'replay': False, 'replay_file': '0log_simple_map_zoom', 'save': 'map.save', 'timeline': False}}
+7395 - {'subject': 'cam_map', 'data': {'mode': 0, 'size': 1, 'z': 15}}
+7412 - {'subject': 'cam_map', 'data': {'mode': 0, 'size': 1, 'z': 16}}
+7420 - {'subject': 'cam_map', 'data': {'mode': 0, 'size': 1, 'z': 17}}
+7429 - {'subject': 'cam_map', 'data': {'mode': 0, 'size': 1, 'z': 18}}
+7445 - {'subject': 'cam_map', 'data': {'mode': 0, 'size': 1, 'z': 19}}
+7454 - {'subject': 'cam_map', 'data': {'mode': 0, 'size': 1, 'z': 20}}
+7462 - {'subject': 'cam_map', 'data': {'mode': 0, 'size': 1, 'z': 21}}
+7470 - {'subject': 'cam_map', 'data': {'mode': 0, 'size': 1, 'z': 22}}
+7679 - {'subject': 'cam_map', 'data': {'mode': 0, 'size': 1, 'z': 21}}
+7687 - {'subject': 'cam_map', 'data': {'mode': 0, 'size': 1, 'z': 20}}
+7695 - {'subject': 'cam_map', 'data': {'mode': 0, 'size': 1, 'z': 19}}
+7704 - {'subject': 'cam_map', 'data': {'mode': 0, 'size': 1, 'z': 18}}
+7712 - {'subject': 'cam_map', 'data': {'mode': 0, 'size': 1, 'z': 17}}
+7720 - {'subject': 'cam_map', 'data': {'mode': 0, 'size': 1, 'z': 16}}
+7729 - {'subject': 'cam_map', 'data': {'mode': 0, 'size': 1, 'z': 15}}
+7737 - {'subject': 'cam_map', 'data': {'mode': 0, 'size': 1, 'z': 14}}
+7745 - {'subject': 'cam_map', 'data': {'mode': 0, 'size': 1, 'z': 13}}
+7754 - {'subject': 'cam_map', 'data': {'mode': 0, 'size': 1, 'z': 12}}
+7762 - {'subject': 'cam_map', 'data': {'mode': 0, 'size': 1, 'z': 11}}
+7770 - {'subject': 'cam_map', 'data': {'mode': 0, 'size': 1, 'z': 10}}
+8121 - {'subject': 'cam_map', 'data': {'mode': 0, 'size': 1, 'z': 11}}
+8295 - {'subject': 'cam_map', 'data': {'mode': 0, 'size': 1, 'z': 12}}
+8470 - {'subject': 'cam_map', 'data': {'mode': 0, 'size': 1, 'z': 13}}
+8486 - {'subject': 'cam_map', 'data': {'mode': 0, 'size': 1, 'z': 14}}
+8503 - {'subject': 'cam_map', 'data': {'mode': 0, 'size': 1, 'z': 15}}
+8520 - {'subject': 'cam_map', 'data': {'mode': 0, 'size': 1, 'z': 16}}
+9784 - {'subject': 'control_panel_load', 'data': {}}
+11664 - {'subject': 'control_panel_toggle_drawing_board', 'data': {}}
+11663 - {'subject': 'button_to_drawingboard', 'data': {}}
+13405 - {'subject': 'cam_map', 'data': {'mode': 0, 'size': 1, 'z': 14}}
+13406 - {'subject': 'control_panel_toggle_map', 'data': {}}
+13405 - {'subject': 'button_to_map', 'data': {}}

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://ba11xaovjchb4"]
+
+[ext_resource type="Script" path="res://Scripts/replayer/replayer.gd" id="1_1ti14"]
+
+[node name="Replayer" type="Node"]
+script = ExtResource("1_1ti14")

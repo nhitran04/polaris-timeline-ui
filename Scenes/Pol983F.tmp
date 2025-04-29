@@ -1,0 +1,80 @@
+[gd_scene load_steps=10 format=3 uid="uid://b1wp7qlcfddxn"]
+
+[ext_resource type="Script" path="res://Scripts/drawing_board/CameraDrawingBoard.gd" id="1_nwuhc"]
+[ext_resource type="Script" path="res://Scripts/Comm.gd" id="2_hhah6"]
+[ext_resource type="Script" path="res://Scripts/goal_automata/goal_automata.gd" id="3_rh0em"]
+[ext_resource type="Script" path="res://Scripts/controller.gd" id="4_gpv7n"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8fc8n"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="Curve2D" id="Curve2D_gichs"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 545, 416, -282.352, -47.6749, 282.352, 47.6749, 996.796, 469, 0, 0, 0, 0, 1563.38, 504)
+}
+point_count = 3
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_g5hn2"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_twb0w"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_8kqbv"]
+
+[node name="Node" type="Node"]
+
+[node name="Panel" type="Panel" parent="."]
+offset_right = 6000.0
+offset_bottom = 6000.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_8fc8n")
+
+[node name="Camera2D" type="Camera2D" parent="Panel"]
+position = Vector2(1720, 400)
+anchor_mode = 0
+script = ExtResource("1_nwuhc")
+
+[node name="Comm" type="HTTPRequest" parent="Panel"]
+script = ExtResource("2_hhah6")
+ip = "127.0.0.1"
+
+[node name="Path2D" type="Path2D" parent="Panel"]
+position = Vector2(27.4899, 0)
+scale = Vector2(0.949552, 1)
+curve = SubResource("Curve2D_gichs")
+
+[node name="GoalAutomata" type="Node" parent="Panel"]
+script = ExtResource("3_rh0em")
+
+[node name="UILayer" type="CanvasLayer" parent="." node_paths=PackedStringArray("_timelineButton", "_drawerButton", "_simulatorButton")]
+script = ExtResource("4_gpv7n")
+_timelineButton = NodePath("DemoOptions/Timeline")
+_drawerButton = NodePath("DemoOptions/Drawer")
+_simulatorButton = NodePath("DemoOptions/Simulator")
+
+[node name="DemoOptions" type="HBoxContainer" parent="UILayer"]
+custom_minimum_size = Vector2(460, 100)
+offset_left = 1771.0
+offset_top = 1329.0
+offset_right = 2423.0
+offset_bottom = 1529.0
+theme_override_constants/separation = 26
+
+[node name="Drawer" type="Button" parent="UILayer/DemoOptions"]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+icon = SubResource("CompressedTexture2D_g5hn2")
+flat = true
+expand_icon = true
+
+[node name="Timeline" type="Button" parent="UILayer/DemoOptions"]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+icon = SubResource("CompressedTexture2D_twb0w")
+flat = true
+expand_icon = true
+
+[node name="Simulator" type="Button" parent="UILayer/DemoOptions"]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+icon = SubResource("CompressedTexture2D_8kqbv")
+flat = true
+expand_icon = true

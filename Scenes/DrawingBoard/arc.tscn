@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://davfe8fusvawl"]
+
+[ext_resource type="Script" uid="uid://conkbmrnrsvab" path="res://Scripts/goal_automata/arc.gd" id="1_3r6bh"]
+
+[node name="arc" type="Line2D"]
+width = 2.0
+default_color = Color(0, 0, 0, 1)
+script = ExtResource("1_3r6bh")
+
+[node name="hints" type="Node2D" parent="."]

@@ -1,0 +1,50 @@
+[gd_scene load_steps=4 format=3 uid="uid://c66kkalgyv4g6"]
+
+[ext_resource type="Script" path="res://Scripts/goal_automata/action.gd" id="1_3efwl"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pk3pl"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+anti_aliasing = false
+
+[sub_resource type="Theme" id="Theme_8er2p"]
+Panel/styles/panel = SubResource("StyleBoxFlat_pk3pl")
+
+[node name="Control2" type="Control" node_paths=PackedStringArray("label")]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_3efwl")
+label = NodePath("Label")
+
+[node name="Label" type="Label" parent="."]
+auto_translate_mode = 1
+layout_mode = 0
+offset_left = -28.0
+offset_top = -16.0
+offset_right = -27.0
+offset_bottom = 14.0
+mouse_filter = 0
+theme_override_colors/font_color = Color(0.473976, 0.473976, 0.473976, 1)
+theme_override_font_sizes/font_size = 21
+horizontal_alignment = 2
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = -6.0
+offset_top = -6.0
+offset_right = 6.0
+offset_bottom = 6.0
+theme = SubResource("Theme_8er2p")
+
+[connection signal="gui_input" from="Label" to="." method="_on_label_gui_input"]
+[connection signal="resized" from="Label" to="." method="_on_label_resized"]

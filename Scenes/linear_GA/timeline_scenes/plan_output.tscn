@@ -1,0 +1,35 @@
+[gd_scene load_steps=3 format=3 uid="uid://be77hsxwj1n8u"]
+
+[ext_resource type="Script" path="res://Scripts/linear_ga_scripts/plan_output.gd" id="1_ar872"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1vnwy"]
+bg_color = Color(0.184314, 0.462745, 0.470588, 1)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+
+[node name="PlanSnippet" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_ar872")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 58.0
+offset_top = -5.0
+offset_right = 667.0
+offset_bottom = 110.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_1vnwy")
+
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 0
+offset_left = 36.0
+offset_top = 20.0
+offset_right = 564.0
+offset_bottom = 81.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 30
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2

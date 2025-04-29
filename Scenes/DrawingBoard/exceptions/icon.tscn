@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=3 uid="uid://bjs46amj3eqg1"]
+
+[ext_resource type="Texture2D" uid="uid://cb5q02k1lgd7" path="res://Assets/img/warning.png" id="1_orwxb"]
+
+[node name="icon_container" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+size_flags_vertical = 4
+
+[node name="icon" type="TextureRect" parent="."]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+offset_top = -20.0
+offset_right = 40.0
+offset_bottom = 20.0
+texture = ExtResource("1_orwxb")
+expand_mode = 2

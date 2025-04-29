@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://bu580ybrogp87"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_22m0g"]
+load_path = "res://.godot/imported/Bedroom_Singles_32x32_237.png-e7cd26eec9c78dc1e4ef37f21b2608bd.ctex"
+
+[node name="bed" type="StaticBody2D"]
+z_index = 1
+position = Vector2(-90, -200)
+scale = Vector2(1.5, 1.5)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("CompressedTexture2D_22m0g")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-32.6667, 28.6667, -32, -46, 32.6667, -46, 32.6667, 29.3333)

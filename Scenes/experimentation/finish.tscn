@@ -1,0 +1,32 @@
+[gd_scene load_steps=3 format=3 uid="uid://b54yexdu5ivwx"]
+
+[ext_resource type="Script" uid="uid://ctartls01gdyf" path="res://Scripts/experimentation/done.gd" id="1_tn0wq"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yjis8"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[node name="Finish" type="Node"]
+script = ExtResource("1_tn0wq")
+
+[node name="DonePanel" type="Panel" parent="."]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -1.0
+offset_bottom = 1.0
+grow_horizontal = 0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_yjis8")
+
+[node name="Done" type="Button" parent="DonePanel"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -261.0
+offset_top = 60.0
+offset_right = -69.0
+offset_bottom = 160.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 62
+text = "Done"

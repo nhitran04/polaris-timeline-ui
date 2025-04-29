@@ -1,0 +1,113 @@
+[gd_scene load_steps=10 format=3 uid="uid://cloqdkbjrkfo8"]
+
+[ext_resource type="Script" path="res://Scripts/goal_automata/checkpoint_predicate.gd" id="1_x3k81"]
+[ext_resource type="Texture2D" uid="uid://buoujuogfhshg" path="res://Assets/img/drawing_board/cancel_button.png" id="2_hsn57"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uh573"]
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.6, 0.6, 0.6, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="Theme" id="Theme_w06op"]
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_uh573")
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ak17o"]
+
+[sub_resource type="Theme" id="Theme_u3e4n"]
+default_font_size = 12
+PopupMenu/font_sizes/font_separator_size = 24
+PopupMenu/font_sizes/font_size = 24
+PopupMenu/font_sizes/title_font_size = 24
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rci45"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i6ebp"]
+content_margin_left = 14.0
+content_margin_top = 14.0
+content_margin_right = 14.0
+content_margin_bottom = 14.0
+bg_color = Color(0.184314, 0.462745, 0.470588, 1)
+border_width_left = 8
+border_width_top = 8
+border_width_right = 8
+border_width_bottom = 8
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bsiew"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[node name="PredicateContainer" type="PanelContainer"]
+offset_right = 348.0
+offset_bottom = 88.0
+theme = SubResource("Theme_w06op")
+script = ExtResource("1_x3k81")
+
+[node name="CheckpointPredicate" type="VBoxContainer" parent="."]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(340, 0)
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_constants/separation = 24
+
+[node name="PredicateDropdown" type="OptionButton" parent="CheckpointPredicate"]
+auto_translate_mode = 1
+material = SubResource("CanvasItemMaterial_ak17o")
+custom_minimum_size = Vector2(180, 60)
+layout_mode = 2
+theme = SubResource("Theme_u3e4n")
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 28
+theme_override_styles/normal = SubResource("StyleBoxFlat_rci45")
+alignment = 1
+
+[node name="PredicateNL" type="PanelContainer" parent="CheckpointPredicate"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_i6ebp")
+
+[node name="NLBox" type="HFlowContainer" parent="CheckpointPredicate/PredicateNL"]
+layout_mode = 2
+theme_override_constants/v_separation = 8
+
+[node name="DeleteButtonPanel" type="Panel" parent="."]
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_bsiew")
+
+[node name="DeleteButton" type="Button" parent="DeleteButtonPanel"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+offset_left = 306.0
+offset_top = 71.0
+offset_right = 346.0
+offset_bottom = 111.0
+size_flags_horizontal = 8
+size_flags_vertical = 0
+icon = ExtResource("2_hsn57")
+flat = true
+vertical_icon_alignment = 0
+expand_icon = true
+
+[connection signal="gui_input" from="." to="." method="_on_predicate_gui_input"]

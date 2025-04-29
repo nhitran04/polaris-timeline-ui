@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bdjyj8ei4liq4"]
+
+[ext_resource type="Script" path="res://Scripts/comm/push_log_event.gd" id="1_n5ecy"]
+
+[node name="PushLogEvent" type="HTTPRequest"]
+script = ExtResource("1_n5ecy")

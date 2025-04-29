@@ -1,0 +1,53 @@
+[gd_scene load_steps=6 format=3 uid="uid://civ14e7iaa35"]
+
+[ext_resource type="StyleBox" uid="uid://dfeqw5x074e2f" path="res://Resources/add_checkpoint_button.tres" id="2_ghbo2"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eoul4"]
+content_margin_bottom = 10.0
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="Theme" id="Theme_wur7a"]
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_eoul4")
+
+[sub_resource type="Theme" id="Theme_u21q3"]
+Button/styles/disabled = ExtResource("2_ghbo2")
+Button/styles/focus = ExtResource("2_ghbo2")
+Button/styles/hover = ExtResource("2_ghbo2")
+Button/styles/normal = ExtResource("2_ghbo2")
+Button/styles/pressed = ExtResource("2_ghbo2")
+
+[sub_resource type="LabelSettings" id="LabelSettings_a8awn"]
+line_spacing = 0.0
+font_size = 83
+font_color = Color(0.760784, 0.866667, 0.827451, 1)
+
+[node name="AddPredicateButton" type="PanelContainer"]
+offset_right = 340.0
+offset_bottom = 80.0
+mouse_filter = 2
+theme = SubResource("Theme_wur7a")
+
+[node name="Button" type="Button" parent="."]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+size_flags_horizontal = 4
+theme = SubResource("Theme_u21q3")
+theme_override_font_sizes/font_size = 32
+icon_alignment = 1
+vertical_icon_alignment = 0
+expand_icon = true
+
+[node name="Label" type="Label" parent="Button"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+offset_top = -19.0
+offset_right = 80.0
+offset_bottom = 95.0
+theme_override_colors/font_color = Color(0.124331, 0.310084, 0.325275, 1)
+theme_override_font_sizes/font_size = 140
+text = "+"
+label_settings = SubResource("LabelSettings_a8awn")
+horizontal_alignment = 1
+clip_text = true

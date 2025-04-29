@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dhcntempebono"]
+
+[ext_resource type="Script" path="res://Scripts/comm/set_world_comm.gd" id="1_j8boa"]
+
+[node name="SetWorld" type="HTTPRequest"]
+script = ExtResource("1_j8boa")

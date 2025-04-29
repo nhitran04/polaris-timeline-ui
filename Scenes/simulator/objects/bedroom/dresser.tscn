@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://jdqbtk0dh2j5"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_vtwvi"]
+load_path = "res://.godot/imported/Bedroom_Singles_32x32_429.png-de432ba2d91ca728d113167dc776f3b6.ctex"
+
+[node name="dresser" type="StaticBody2D"]
+z_index = 1
+position = Vector2(-20, -220)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("CompressedTexture2D_vtwvi")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-14, 12, -14, -24, 14, -24, 14, 12)

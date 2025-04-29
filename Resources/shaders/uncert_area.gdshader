@@ -1,0 +1,58 @@
+shader_type spatial;
+
+uniform sampler2D sampler;
+
+void vertex() {
+	// Called for every vertex the material is visible on.
+}
+
+void fragment() {
+	// Called for every pixel the material is visible on.
+	// pretend that the world position (0, 0, 0) has been activated
+	vec3 pixel_world_pos = (INV_VIEW_MATRIX  * vec4(VERTEX, 1.0)).xyz;
+	//ALBEDO = vec3(1.0/UV[0], 1.0/UV[1], 1.0/(UV[0] * UV[1]));
+	// ALPHA = 0.2;
+	vec4 input_color = texture(sampler, UV);
+
+	// set level to the input texture
+	float status = input_color.r;
+	float level = input_color.a;
+
+	vec4 output_color;
+	ALBEDO = vec3(input_color.r, input_color.g, input_color.b);
+	ALPHA = input_color.a;
+	/*
+	if (status > 0.8) {
+		ALBEDO = vec3(0.5, 0.5, 0.0);
+		ALPHA = 0.8;
+	}
+	else if (level < 0.3) {
+		ALBEDO = vec3(0, 0, 0);
+		ALPHA = 0.8;
+	}
+	else if (level < 0.6) { // grey
+		ALBEDO = vec3(0.1, 0.1, 0.1);
+		ALPHA = 0.8;
+	}
+	else { // BLACK
+		ALBEDO = vec3(0.0, 0.0, 0.0);
+		ALPHA = 1.0;
+	}
+	*/
+	/*
+	if (level < 0.5) {
+		output_color = vec4(level*2.0, 0, 0, 1.0);
+	}
+	else {
+		output_color = vec4(1.0, (level-0.5)*2.0, (level-0.5)*2.0, 1.0);
+	}
+	*/
+	//ALBEDO = vec3(output_color[0], output_color[1], output_color[2]);
+	//DEPTH = level;
+
+}
+
+//void light() {
+	// Called for every pixel for every light affecting the material.
+	// Uncomment to replace the default light processing function with this one.
+//}

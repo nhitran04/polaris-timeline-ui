@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://csy60h6r5y3g7"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_08ucx"]
+load_path = "res://.godot/imported/Halloween_Singles_32x32_167.png-6506c773c29423ceb92b4fc84ea69712.ctex"
+
+[node name="bookshelf" type="StaticBody2D"]
+position = Vector2(-90, -241)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 1
+texture = SubResource("CompressedTexture2D_08ucx")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-26, 32, -26, -46, 23, -47, 24, 32)

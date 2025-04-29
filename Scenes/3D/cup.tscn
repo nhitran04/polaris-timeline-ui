@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://fwc3ppy72xfy"]
+
+[ext_resource type="PackedScene" uid="uid://ihy75uegedpf" path="res://Assets/3d/cup.glb" id="1_xgdqo"]
+[ext_resource type="Script" path="res://Scripts/map/UI/uncert_item_selection/item_rotator.gd" id="2_grta3"]
+
+[node name="cup" instance=ExtResource("1_xgdqo")]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, 0, 0)
+script = ExtResource("2_grta3")
+
+[node name="NurbsPath" parent="." index="0"]
+layers = 524288

@@ -1,0 +1,7 @@
+# Godot 4+ specific ignores
+.godot/
+WebExport/
+FBX2glTF-windows-x86_64
+
+# anything with certain extensions
+*.ai

@@ -1,0 +1,180 @@
+[gd_scene load_steps=12 format=3 uid="uid://ckpvgljmhipnr"]
+
+[ext_resource type="Script" path="res://Scripts/goal_automata/checkpoint.gd" id="1_1p166"]
+[ext_resource type="Texture2D" uid="uid://ciyiv4w3sasui" path="res://icon.svg" id="2_784u7"]
+[ext_resource type="Texture2D" uid="uid://buoujuogfhshg" path="res://Assets/img/drawing_board/cancel_button.png" id="3_5bvay"]
+[ext_resource type="Texture2D" uid="uid://coq2foorqo114" path="res://Assets/img/add_button-01.png" id="4_a428m"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ksjy5"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 8
+border_width_top = 8
+border_width_right = 8
+border_width_bottom = 8
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ak17o"]
+
+[sub_resource type="Theme" id="Theme_u3e4n"]
+default_font_size = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rci45"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i6ebp"]
+bg_color = Color(0.145098, 0.670588, 0.764706, 1)
+border_width_left = 8
+border_width_top = 8
+border_width_right = 8
+border_width_bottom = 8
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_epkr1"]
+bg_color = Color(0.937255, 0, 0.227451, 1)
+border_width_left = 8
+border_width_top = 8
+border_width_right = 8
+border_width_bottom = 8
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a210h"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -2045.0
+offset_bottom = -1273.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_1p166")
+
+[node name="UI" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 48.0
+offset_bottom = 42.0
+
+[node name="MainPanel" type="Panel" parent="UI"]
+z_index = 1
+layout_mode = 0
+offset_top = 175.0
+offset_right = 712.0
+offset_bottom = 559.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_ksjy5")
+
+[node name="PredicateDropdown" type="OptionButton" parent="UI/MainPanel"]
+material = SubResource("CanvasItemMaterial_ak17o")
+layout_mode = 0
+offset_left = 320.0
+offset_top = 104.0
+offset_right = 576.0
+offset_bottom = 176.0
+theme = SubResource("Theme_u3e4n")
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 12
+theme_override_styles/normal = SubResource("StyleBoxFlat_rci45")
+alignment = 1
+
+[node name="PredicateNL" type="Panel" parent="UI/MainPanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -36.0
+offset_right = 300.0
+offset_bottom = 72.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_i6ebp")
+
+[node name="NLBox" type="HBoxContainer" parent="UI/MainPanel/PredicateNL"]
+layout_mode = 0
+offset_left = 18.0
+offset_top = 16.0
+offset_right = 58.0
+offset_bottom = 56.0
+
+[node name="MainImagePanel" type="Panel" parent="UI/MainPanel"]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 88.0
+offset_right = 256.0
+offset_bottom = 280.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_epkr1")
+
+[node name="ImagePanel" type="Panel" parent="UI/MainPanel/MainImagePanel"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 176.0
+offset_bottom = 176.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_a210h")
+
+[node name="Icon" type="Sprite2D" parent="UI/MainPanel/MainImagePanel"]
+position = Vector2(96, 96)
+scale = Vector2(0.5625, 0.546875)
+texture = ExtResource("2_784u7")
+
+[node name="CancelButton" type="Button" parent="UI/MainPanel"]
+visible = false
+layout_mode = 0
+offset_left = 640.0
+offset_top = 16.0
+offset_right = 746.0
+offset_bottom = 122.0
+scale = Vector2(0.5, 0.5)
+icon = ExtResource("3_5bvay")
+
+[node name="BottomAddButton" type="Button" parent="UI/MainPanel"]
+layout_mode = 0
+offset_left = 300.0
+offset_top = 439.0
+offset_right = 725.0
+offset_bottom = 864.0
+scale = Vector2(0.25, 0.25)
+icon = ExtResource("4_a428m")
+flat = true
+
+[node name="TopAddButton" type="Button" parent="UI/MainPanel"]
+auto_translate_mode = 1
+layout_mode = 0
+offset_left = 309.0
+offset_top = -158.0
+offset_right = 734.0
+offset_bottom = 267.0
+scale = Vector2(0.25, 0.25)
+icon = ExtResource("4_a428m")
+flat = true
+
+[connection signal="pressed" from="UI/MainPanel/CancelButton" to="." method="_on_cancel_button_pressed"]
+[connection signal="pressed" from="UI/MainPanel/BottomAddButton" to="." method="_on_bottom_add_button_pressed"]
+[connection signal="pressed" from="UI/MainPanel/TopAddButton" to="." method="_on_top_add_button_pressed"]

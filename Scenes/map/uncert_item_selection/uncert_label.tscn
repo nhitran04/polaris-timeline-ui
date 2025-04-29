@@ -1,0 +1,84 @@
+[gd_scene load_steps=7 format=3 uid="uid://dxnieoxe8je1p"]
+
+[ext_resource type="Script" uid="uid://cosihwoj5pxq7" path="res://Scripts/map/UI/uncert_item_selection/uncert_label.gd" id="1_j3n7n"]
+[ext_resource type="Texture2D" uid="uid://buoujuogfhshg" path="res://Assets/img/drawing_board/cancel_button.png" id="2_3pec0"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_pff0r"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bqjmy"]
+resource_local_to_scene = true
+render_priority = 5
+transparency = 1
+albedo_texture = SubResource("ViewportTexture_pff0r")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_12myk"]
+orientation = 2
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8f5pu"]
+size = Vector3(0.305176, 0.311096, 0.0682983)
+
+[node name="UncertLabel" type="Node3D"]
+script = ExtResource("1_j3n7n")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+material_override = SubResource("StandardMaterial3D_bqjmy")
+mesh = SubResource("PlaneMesh_12myk")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000244141, 0.839691, 0.00479126)
+shape = SubResource("BoxShape3D_8f5pu")
+
+[node name="Label3D" type="Label3D" parent="."]
+visible = false
+render_priority = 1
+outline_render_priority = 1
+font_size = 172
+outline_size = 4
+
+[node name="Percentage" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.416362, 0)
+visible = false
+outline_modulate = Color(0, 0, 0, 0)
+text = "%"
+font_size = 64
+
+[node name="SubViewport" type="SubViewport" parent="."]
+transparent_bg = true
+size = Vector2i(400, 400)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SubViewport"]
+offset_right = 400.0
+offset_bottom = 400.0
+
+[node name="Button" type="Button" parent="SubViewport/VBoxContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+icon = ExtResource("2_3pec0")
+flat = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="Label" type="Label" parent="SubViewport/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 200
+text = "ws1"
+horizontal_alignment = 1
+
+[node name="PercentSlider" type="HSlider" parent="SubViewport/VBoxContainer"]
+visible = false
+layout_mode = 2
+
+[node name="Percent" type="Label" parent="SubViewport/VBoxContainer"]
+visible = false
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "100%"
+horizontal_alignment = 1
+
+[connection signal="input_event" from="MeshInstance3D/StaticBody3D" to="." method="_on_exit_button_pressed"]

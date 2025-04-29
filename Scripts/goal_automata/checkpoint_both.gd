@@ -1,0 +1,3 @@
+extends CheckpointPredicate
+
+class_name CheckpointBoth

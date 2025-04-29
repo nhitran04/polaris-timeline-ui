@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://c31jtjvtkfvhs"]
+
+[ext_resource type="PackedScene" uid="uid://clowp3vrp241k" path="res://Assets/3d/umbrella_small.glb" id="1_8rx1a"]
+[ext_resource type="Script" path="res://Scripts/map/UI/uncert_item_selection/item_rotator.gd" id="2_qrn05"]
+
+[node name="umbrella_small" instance=ExtResource("1_8rx1a")]
+transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 0.3, 0)
+script = ExtResource("2_qrn05")
+
+[node name="Cylinder_001" parent="." index="0"]
+layers = 524288
+
+[node name="Cylinder_002" parent="." index="1"]
+layers = 524288
+
+[node name="Cylinder_003" parent="." index="2"]
+layers = 524288
+
+[node name="Cylinder" parent="." index="3"]
+layers = 524288
+
+[node name="Cylinder_004" parent="." index="4"]
+layers = 524288

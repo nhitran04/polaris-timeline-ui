@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://4fsalx4i7o4m"]
+
+[ext_resource type="Script" path="res://Scripts/simulator/resident.gd" id="1_nbad4"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_vqihy"]
+load_path = "res://.godot/imported/dave-front.png-9ee5cce603a3a17648c1b8d67ca4f820.ctex"
+
+[node name="dave" type="StaticBody2D"]
+z_index = 1
+position = Vector2(500, 1000)
+script = ExtResource("1_nbad4")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(1.5, 1.5)
+texture = SubResource("CompressedTexture2D_vqihy")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(15.5, -13, 16.5, 33.5, -16, 33.5, -16, -13)
+
+[node name="NavPoint" type="Node2D" parent="."]
+position = Vector2(-50, 80)

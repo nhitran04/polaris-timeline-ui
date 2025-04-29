@@ -1,0 +1,172 @@
+[gd_scene load_steps=21 format=3 uid="uid://ccte2ismmousf"]
+
+[ext_resource type="Script" path="res://Scripts/drawing_board/timeline.gd" id="1_33tpj"]
+[ext_resource type="Texture2D" uid="uid://7n7uraqygq67" path="res://Assets/img/help.png" id="2_cqs1f"]
+[ext_resource type="StyleBox" uid="uid://66qmiclqq704" path="res://Resources/scrollbar.tres" id="2_lufdf"]
+[ext_resource type="StyleBox" uid="uid://c1pcr3le6nohu" path="res://Resources/scrollbar_highlighted.tres" id="3_4diqe"]
+[ext_resource type="Texture2D" uid="uid://cmxduk3pbdby5" path="res://Assets/img/goals_actions_help.png" id="3_ik7mb"]
+[ext_resource type="StyleBox" uid="uid://ds0nbejp6in8t" path="res://Resources/style_box_flat_bordered.tres" id="4_mkaxm"]
+[ext_resource type="Texture2D" uid="uid://coq2foorqo114" path="res://Assets/img/add_button-01.png" id="5_pa263"]
+[ext_resource type="Texture2D" uid="uid://buoujuogfhshg" path="res://Assets/img/drawing_board/cancel_button.png" id="8_sw5o6"]
+[ext_resource type="Texture2D" uid="uid://b6un74w3ksuln" path="res://Assets/img/goals_help.png" id="9_sqjx6"]
+[ext_resource type="Texture2D" uid="uid://15t0yykxh6bi" path="res://Assets/img/actions_help.png" id="10_02p1u"]
+[ext_resource type="Texture2D" uid="uid://jsgteevfsimy" path="res://Assets/img/done_button.png" id="11_pldnb"]
+[ext_resource type="Texture2D" uid="uid://h2e73yb6vr42" path="res://Assets/img/next_page_popup.png" id="12_4cgd6"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_tfhun"]
+color = Color(0, 0, 0, 0)
+thickness = 80
+
+[sub_resource type="Theme" id="Theme_augk2"]
+HScrollBar/styles/grabber = ExtResource("2_lufdf")
+HScrollBar/styles/grabber_pressed = ExtResource("3_4diqe")
+HScrollBar/styles/scroll = SubResource("StyleBoxLine_tfhun")
+ScrollContainer/styles/panel = ExtResource("4_mkaxm")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_84n2k"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0uv0r"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_id627"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vs04n"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sreet"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="Theme" id="Theme_t7k8i"]
+Button/styles/disabled = SubResource("StyleBoxFlat_84n2k")
+Button/styles/focus = SubResource("StyleBoxFlat_0uv0r")
+Button/styles/hover = SubResource("StyleBoxFlat_id627")
+Button/styles/normal = SubResource("StyleBoxFlat_vs04n")
+Button/styles/pressed = SubResource("StyleBoxFlat_sreet")
+
+[node name="TwoWayTimeline" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 150.0
+offset_top = 100.0
+offset_right = 150.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_33tpj")
+
+[node name="HelpButton" type="Button" parent="."]
+layout_mode = 2
+offset_left = 122.0
+offset_top = 80.0
+offset_right = 228.0
+offset_bottom = 197.0
+icon = ExtResource("2_cqs1f")
+flat = true
+expand_icon = true
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -475.0
+offset_top = -570.0
+offset_right = 475.0
+offset_bottom = 570.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_augk2")
+follow_focus = true
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="Button" type="Button" parent="ScrollContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+size_flags_vertical = 4
+theme = SubResource("Theme_t7k8i")
+icon = ExtResource("5_pa263")
+icon_alignment = 1
+expand_icon = true
+
+[node name="GoalsActionsHelp" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(498, 594)
+scale = Vector2(1.40132, 1.44278)
+texture = ExtResource("3_ik7mb")
+
+[node name="GoalsActionsExitButton" type="Button" parent="GoalsActionsHelp"]
+offset_left = 128.0
+offset_top = -275.0
+offset_right = 173.0
+offset_bottom = -228.0
+icon = ExtResource("8_sw5o6")
+flat = true
+expand_icon = true
+
+[node name="GoalsHelp" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(542, 393)
+scale = Vector2(1.72951, 1.78326)
+texture = ExtResource("9_sqjx6")
+
+[node name="GoalsExitButton" type="Button" parent="GoalsHelp"]
+offset_left = 125.0
+offset_top = -112.0
+offset_right = 168.0
+offset_bottom = -66.0
+icon = ExtResource("8_sw5o6")
+flat = true
+expand_icon = true
+
+[node name="ActionsHelp" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(557, 528)
+scale = Vector2(1.67585, 1.77456)
+texture = ExtResource("10_02p1u")
+
+[node name="ActionsExitButton" type="Button" parent="ActionsHelp"]
+offset_left = 141.0
+offset_top = -192.0
+offset_right = 179.0
+offset_bottom = -154.0
+icon = ExtResource("8_sw5o6")
+flat = true
+expand_icon = true
+
+[node name="DoneButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 1617.0
+offset_top = 1074.0
+offset_right = 1841.0
+offset_bottom = 1198.0
+icon = ExtResource("11_pldnb")
+flat = true
+expand_icon = true
+
+[node name="NextPagePopup" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(1049, 635)
+texture = ExtResource("12_4cgd6")
+
+[connection signal="pressed" from="HelpButton" to="." method="_on_help_button_pressed"]
+[connection signal="pressed" from="GoalsActionsHelp/GoalsActionsExitButton" to="." method="_on_goals_actions_exit_button_pressed"]
+[connection signal="pressed" from="GoalsHelp/GoalsExitButton" to="." method="_on_goals_exit_button_pressed"]
+[connection signal="pressed" from="ActionsHelp/ActionsExitButton" to="." method="_on_actions_exit_button_pressed"]
+[connection signal="pressed" from="DoneButton" to="." method="_on_done_button_pressed"]

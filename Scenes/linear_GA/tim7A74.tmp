@@ -1,0 +1,93 @@
+[gd_scene load_steps=14 format=3 uid="uid://ccte2ismmousf"]
+
+[ext_resource type="Script" path="res://Scripts/drawing_board/timeline.gd" id="1_1msv6"]
+[ext_resource type="StyleBox" uid="uid://66qmiclqq704" path="res://Resources/scrollbar.tres" id="1_58ina"]
+[ext_resource type="StyleBox" uid="uid://c1pcr3le6nohu" path="res://Resources/scrollbar_highlighted.tres" id="2_y65ia"]
+[ext_resource type="StyleBox" uid="uid://ds0nbejp6in8t" path="res://Resources/style_box_flat_bordered.tres" id="3_l83ao"]
+[ext_resource type="Texture2D" uid="uid://coq2foorqo114" path="res://Assets/img/add_button-01.png" id="4_vxpuu"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_tfhun"]
+color = Color(0, 0, 0, 0)
+thickness = 80
+
+[sub_resource type="Theme" id="Theme_augk2"]
+HScrollBar/styles/grabber = ExtResource("1_58ina")
+HScrollBar/styles/grabber_pressed = ExtResource("2_y65ia")
+HScrollBar/styles/scroll = SubResource("StyleBoxLine_tfhun")
+ScrollContainer/styles/panel = ExtResource("3_l83ao")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1orq8"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vcnwt"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_02rxc"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kdh1p"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qf5u8"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="Theme" id="Theme_t7k8i"]
+Button/styles/disabled = SubResource("StyleBoxFlat_1orq8")
+Button/styles/focus = SubResource("StyleBoxFlat_vcnwt")
+Button/styles/hover = SubResource("StyleBoxFlat_02rxc")
+Button/styles/normal = SubResource("StyleBoxFlat_kdh1p")
+Button/styles/pressed = SubResource("StyleBoxFlat_qf5u8")
+
+[node name="TwoWayTimeline" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_1msv6")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -437.5
+offset_top = -640.0
+offset_right = 512.5
+offset_bottom = 640.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_augk2")
+follow_focus = true
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
+
+[node name="Button" type="Button" parent="ScrollContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+size_flags_vertical = 4
+theme = SubResource("Theme_t7k8i")
+icon = ExtResource("4_vxpuu")
+icon_alignment = 1
+expand_icon = true
+
+[node name="PreviewVBox" type="VBoxContainer" parent="ScrollContainer/HBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.25
+alignment = 1

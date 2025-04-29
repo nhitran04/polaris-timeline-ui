@@ -1,0 +1,41 @@
+[gd_scene load_steps=3 format=3 uid="uid://cevrbc4qtmh45"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p4r13"]
+bg_color = Color(0.643137, 0.643137, 0.643137, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_snxkk"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.641934, 0.641934, 0.641934, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[node name="Scrubber" type="Control"]
+auto_translate_mode = 1
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Line" type="Panel" parent="."]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(2, 190)
+layout_mode = 0
+offset_left = -1.0
+offset_right = 1.0
+offset_bottom = 190.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_p4r13")
+
+[node name="Pin" type="Panel" parent="."]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(10, 10)
+layout_mode = 0
+offset_left = -5.0
+offset_top = -10.0
+offset_right = 5.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_snxkk")

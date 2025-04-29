@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dtceqb63xqm6r"]
+
+[ext_resource type="Script" path="res://Scripts/simulator/push_replan.gd" id="1_6yyv8"]
+
+[node name="PushReplan" type="HTTPRequest"]
+script = ExtResource("1_6yyv8")

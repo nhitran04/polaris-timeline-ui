@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://cpgu6khtw033n"]
+
+[ext_resource type="Texture2D" uid="uid://blj6hvjko78bc" path="res://Assets/img/simulator/plants/tallskinny.png" id="1_p864g"]
+
+[node name="plant" type="StaticBody2D"]
+z_index = 1
+
+[node name="sprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_p864g")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(14, -53.7, 24, -41.9, 24, -30.3, 22.4, -20, 24, -12.8, 24, -5, 23.2, -5, 17, 6.5, 19.3, 25, 17.6, 25, 15.6, 34, 14, 34, 10, 39, -10.2, 39, -19, 23.5, -19, 7.2, -17.8, 6, -19.7, 6, -22.4, -9, -20.2, -9, -19.7, -10, -24, -16.8, -24, -27, -23, -27, -21, -29.5, -24, -39.4, -24, -45, -22.9, -45, -15.9, -53, -5.2, -53, -4.2, -52, 1, -54.3, 1, -56, 14, -56)

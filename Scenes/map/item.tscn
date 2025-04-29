@@ -1,0 +1,72 @@
+[gd_scene load_steps=13 format=3 uid="uid://rcbxe0tqwjr7"]
+
+[ext_resource type="Script" path="res://Scripts/map/item.gd" id="2_ns318"]
+[ext_resource type="PackedScene" uid="uid://b6j4mal61e2ag" path="res://Scenes/map/label.tscn" id="2_nxogx"]
+[ext_resource type="Script" path="res://Scripts/map/item_node.gd" id="3_fm8w4"]
+[ext_resource type="Material" uid="uid://bro2q5fm3yfti" path="res://Resources/materials/item.tres" id="3_vm3wg"]
+[ext_resource type="Script" path="res://Scripts/map/world_entity_collision_control.gd" id="4_ejane"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_jc3e8"]
+viewport_path = NodePath("label/SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hfjt8"]
+resource_local_to_scene = true
+albedo_texture = SubResource("ViewportTexture_jc3e8")
+
+[sub_resource type="BoxMesh" id="BoxMesh_s8qb3"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x7joy"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_0a2jd"]
+_surfaces = [{
+"aabb": AABB(-0.61547, -0.61547, -0.61547, 1.23094, 1.23095, 1.23095),
+"attribute_data": PackedByteArray(0, 0, 0, 0, 0, 0, 0, 0, 171, 170, 42, 63, 0, 0, 0, 0, 171, 170, 170, 62, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 63, 171, 170, 42, 63, 0, 0, 0, 63, 171, 170, 170, 62, 0, 0, 0, 63, 0, 0, 128, 63, 0, 0, 0, 63, 171, 170, 170, 62, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 63, 171, 170, 42, 63, 0, 0, 0, 0, 171, 170, 170, 62, 0, 0, 0, 63, 171, 170, 170, 62, 0, 0, 0, 63, 0, 0, 0, 0, 0, 0, 128, 63, 171, 170, 42, 63, 0, 0, 0, 63, 171, 170, 170, 62, 0, 0, 128, 63, 171, 170, 170, 62, 0, 0, 0, 63, 171, 170, 42, 63, 0, 0, 0, 63, 171, 170, 42, 63, 0, 0, 0, 63, 0, 0, 128, 63, 0, 0, 0, 63, 171, 170, 170, 62, 0, 0, 128, 63, 171, 170, 42, 63, 0, 0, 128, 63, 171, 170, 42, 63, 0, 0, 128, 63, 0, 0, 128, 63, 0, 0, 128, 63),
+"format": 34359742487,
+"index_count": 36,
+"index_data": PackedByteArray(0, 0, 4, 0, 2, 0, 2, 0, 4, 0, 6, 0, 1, 0, 5, 0, 3, 0, 3, 0, 5, 0, 7, 0, 8, 0, 12, 0, 10, 0, 10, 0, 12, 0, 14, 0, 9, 0, 13, 0, 11, 0, 11, 0, 13, 0, 15, 0, 16, 0, 20, 0, 18, 0, 18, 0, 20, 0, 22, 0, 17, 0, 21, 0, 19, 0, 19, 0, 21, 0, 23, 0),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 24,
+"vertex_data": PackedByteArray(114, 143, 29, 191, 114, 143, 29, 63, 114, 143, 29, 63, 114, 143, 29, 63, 114, 143, 29, 63, 114, 143, 29, 191, 114, 143, 29, 63, 114, 143, 29, 63, 114, 143, 29, 63, 114, 143, 29, 191, 114, 143, 29, 63, 114, 143, 29, 191, 114, 143, 29, 191, 114, 143, 29, 191, 114, 143, 29, 63, 114, 143, 29, 63, 114, 143, 29, 191, 114, 143, 29, 191, 114, 143, 29, 63, 114, 143, 29, 191, 114, 143, 29, 63, 114, 143, 29, 191, 114, 143, 29, 191, 114, 143, 29, 191, 114, 143, 29, 63, 114, 143, 29, 63, 114, 143, 29, 63, 114, 143, 29, 191, 114, 143, 29, 63, 114, 143, 29, 191, 114, 143, 29, 63, 114, 143, 29, 63, 114, 143, 29, 191, 114, 143, 29, 191, 114, 143, 29, 63, 114, 143, 29, 63, 114, 143, 29, 63, 114, 143, 29, 191, 114, 143, 29, 63, 114, 143, 29, 191, 114, 143, 29, 191, 114, 143, 29, 191, 114, 143, 29, 63, 114, 143, 29, 191, 114, 143, 29, 191, 114, 143, 29, 191, 114, 143, 29, 191, 114, 143, 29, 63, 114, 143, 29, 63, 114, 143, 29, 63, 114, 143, 29, 63, 114, 143, 29, 191, 114, 143, 29, 191, 114, 143, 29, 63, 114, 143, 29, 191, 114, 143, 29, 63, 114, 143, 29, 63, 114, 143, 29, 63, 114, 143, 29, 191, 114, 143, 29, 63, 114, 143, 29, 63, 114, 143, 29, 63, 114, 143, 29, 191, 114, 143, 29, 191, 114, 143, 29, 191, 114, 143, 29, 191, 114, 143, 29, 191, 114, 143, 29, 63, 114, 143, 29, 191, 114, 143, 29, 63, 114, 143, 29, 191, 114, 143, 29, 191, 255, 127, 255, 127, 255, 255, 255, 191, 255, 255, 255, 255, 0, 0, 255, 191, 255, 127, 255, 127, 255, 255, 255, 191, 255, 255, 255, 255, 0, 0, 255, 191, 255, 127, 255, 127, 255, 255, 255, 191, 255, 255, 255, 255, 0, 0, 255, 191, 255, 127, 255, 127, 255, 255, 255, 191, 255, 255, 255, 255, 0, 0, 255, 191, 255, 255, 0, 128, 255, 255, 255, 255, 0, 0, 0, 128, 255, 127, 255, 191, 255, 255, 0, 128, 255, 255, 255, 255, 0, 0, 0, 128, 255, 127, 255, 191, 255, 255, 0, 128, 255, 255, 255, 255, 0, 0, 0, 128, 255, 127, 255, 191, 255, 255, 0, 128, 255, 255, 255, 255, 0, 0, 0, 128, 255, 127, 255, 191, 0, 128, 255, 255, 0, 0, 255, 191, 0, 128, 0, 0, 255, 255, 255, 191, 0, 128, 255, 255, 0, 0, 255, 191, 0, 128, 0, 0, 255, 255, 255, 191, 0, 128, 255, 255, 0, 0, 255, 191, 0, 128, 0, 0, 255, 255, 255, 191, 0, 128, 255, 255, 0, 0, 255, 191, 0, 128, 0, 0, 255, 255, 255, 191)
+}]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_frdxo"]
+size = Vector3(100, 100, 0)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_unq0j"]
+size = Vector3(1.25, 1.25, 1.25)
+
+[node name="item" type="Node3D"]
+script = ExtResource("2_ns318")
+
+[node name="label" parent="." node_paths=PackedStringArray("textedit") instance=ExtResource("2_nxogx")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 2.217, -0.386, 2.6)
+material_override = SubResource("StandardMaterial3D_hfjt8")
+textedit = NodePath("SubViewport/TextEdit")
+
+[node name="shape" type="MeshInstance3D" parent="." node_paths=PackedStringArray("item")]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 2.125)
+material_override = ExtResource("3_vm3wg")
+mesh = SubResource("BoxMesh_s8qb3")
+script = ExtResource("3_fm8w4")
+item = NodePath("..")
+
+[node name="outline" type="MeshInstance3D" parent="shape"]
+material_override = SubResource("StandardMaterial3D_x7joy")
+mesh = SubResource("ArrayMesh_0a2jd")
+
+[node name="DrawArea" type="Area3D" parent="shape"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="shape/DrawArea"]
+shape = SubResource("BoxShape3D_frdxo")
+disabled = true
+
+[node name="NodeArea" type="Area3D" parent="shape"]
+script = ExtResource("4_ejane")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="shape/NodeArea"]
+shape = SubResource("BoxShape3D_unq0j")
+
+[connection signal="input_event" from="shape/DrawArea" to="shape" method="_on_draw_area_input_event"]
+[connection signal="input_event" from="shape/NodeArea" to="shape" method="_on_node_area_input_event"]

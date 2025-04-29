@@ -1,0 +1,64 @@
+[gd_scene load_steps=6 format=3 uid="uid://c5cnlx8bmlm6f"]
+
+[ext_resource type="PackedScene" uid="uid://w0yoa6h4yxdq" path="res://Scenes/DrawingBoard/checkpoint/checkpoint.tscn" id="1_d5ofq"]
+[ext_resource type="Script" path="res://Scripts/goal_automata/mg_checkpoint.gd" id="2_48s10"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_47x43"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wpxg2"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yh21v"]
+
+[node name="MG_Checkpoint" instance=ExtResource("1_d5ofq")]
+script = ExtResource("2_48s10")
+
+[node name="Padding2" type="Panel" parent="UI/MainPanel/PanelItems" index="2"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_47x43")
+
+[node name="MaintenanceGoals" type="HBoxContainer" parent="UI/MainPanel/PanelItems" index="3"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="UI/MainPanel/PanelItems/MaintenanceGoals" index="0"]
+custom_minimum_size = Vector2(280, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_wpxg2")
+
+[node name="Label" type="Label" parent="UI/MainPanel/PanelItems/MaintenanceGoals/Panel" index="0"]
+custom_minimum_size = Vector2(280, 0)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Maintained properties:"
+horizontal_alignment = 2
+
+[node name="MaintenanceGoalContainer" type="VBoxContainer" parent="UI/MainPanel/PanelItems/MaintenanceGoals" index="1"]
+custom_minimum_size = Vector2(320, 0)
+layout_mode = 2
+
+[node name="InitMaintenanceGoals" type="Panel" parent="UI/MainPanel/PanelItems/MaintenanceGoals/MaintenanceGoalContainer" index="0"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(280, 25)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_yh21v")
+
+[node name="Label" type="Label" parent="UI/MainPanel/PanelItems/MaintenanceGoals/MaintenanceGoalContainer/InitMaintenanceGoals" index="0"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(280, 0)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "None"
+horizontal_alignment = 1
+
+[node name="Padding3" type="Panel" parent="UI/MainPanel/PanelItems" index="4"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_47x43")

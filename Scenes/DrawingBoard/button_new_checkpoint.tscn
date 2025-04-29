@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://bvbe4l8cbdbxa"]
+
+[ext_resource type="Texture2D" uid="uid://coq2foorqo114" path="res://Assets/img/add_button-01.png" id="1_nrrst"]
+[ext_resource type="Script" path="res://Scripts/goal_automata/button_new_checkpoint.gd" id="2_wflia"]
+
+[node name="ButtonContainer" type="Control"]
+z_index = 1
+layout_mode = 3
+anchors_preset = 0
+offset_right = 50.0
+offset_bottom = 50.0
+script = ExtResource("2_wflia")
+
+[node name="ButtonNewCheckpoint" type="Button" parent="."]
+layout_mode = 0
+offset_left = -25.0
+offset_top = -25.0
+offset_right = 25.0
+offset_bottom = 25.0
+icon = ExtResource("1_nrrst")
+flat = true
+expand_icon = true

@@ -1,0 +1,20 @@
+extends Sprite2D
+
+@onready var _fillBubble = $fill
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+
+func fill() -> void:
+	_fillBubble.show()
+	await get_tree().create_timer(1.0).timeout
+	_fillBubble.hide()
+
+func get_put_loc(name: String) -> Vector2:
+	return Vector2(0,0)

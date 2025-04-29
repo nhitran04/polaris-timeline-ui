@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://8wryjy7cj0ro"]
+
+[ext_resource type="Script" path="res://Scripts/drawing_board/arc_collider.gd" id="1_gdf45"]
+
+[node name="CollisionObject" type="RigidBody2D"]
+input_pickable = true
+mass = 0.01
+gravity_scale = -8.0
+freeze = true
+script = ExtResource("1_gdf45")
+
+[node name="ArcCollider" type="CollisionShape2D" parent="."]
+position = Vector2(581, 261.5)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="input_event" from="." to="." method="_on_input_event"]
