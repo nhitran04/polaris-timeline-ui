@@ -96,7 +96,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 alignment = 1
 
-[node name="Button" type="Button" parent="ScrollContainer/HBoxContainer/VBoxContainer"]
+[node name="InitButton" type="Button" parent="ScrollContainer/HBoxContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 size_flags_vertical = 4
@@ -165,8 +165,11 @@ visible = false
 position = Vector2(1049, 635)
 texture = ExtResource("12_4cgd6")
 
+[node name="HTTPRequest" type="HTTPRequest" parent="."]
+
 [connection signal="pressed" from="HelpButton" to="." method="_on_help_button_pressed"]
 [connection signal="pressed" from="GoalsActionsHelp/GoalsActionsExitButton" to="." method="_on_goals_actions_exit_button_pressed"]
 [connection signal="pressed" from="GoalsHelp/GoalsExitButton" to="." method="_on_goals_exit_button_pressed"]
 [connection signal="pressed" from="ActionsHelp/ActionsExitButton" to="." method="_on_actions_exit_button_pressed"]
 [connection signal="pressed" from="DoneButton" to="." method="_on_done_button_pressed"]
+[connection signal="request_completed" from="HTTPRequest" to="." method="_on_http_request_request_completed"]

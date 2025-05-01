@@ -13,9 +13,9 @@ var curr_id : int = 1
 var tracker : int = 0
 var separator_count = 0
 var temp_scene = null
-
-func _ready():
-	SignalBus.set_plan.connect(on_set_plan_init)
+#
+#func _ready():
+	#SignalBus.set_plan.connect(on_set_plan_init_again)
 
 func _on_add_helper(scene : PackedScene, index : int, button_type : PackedScene):
 	# add node to timeline
@@ -85,24 +85,28 @@ func update_checkpt_ids():
 				get_parent().get_child(i.get_index()).set_id(id_count)
 				id_count += 1
 				
-func on_set_plan_init(plan_data : Dictionary) -> void:
+func on_set_plan_init_again(plan_data : Dictionary) -> void:
 	if get_parent() != null:
 		for i in get_parent().get_children():
 			if i is Checkpoint:
 				if i.is_init_checkpt == true and i.id > 1:
-					print("init checkpoint (id > 1): ", i.id)
+					print("init checkpoint:", i.id)
 					on_set_plan(plan_data, i, get_parent())
 					#i.set_plan_val(true)
 
 func on_set_plan_top(plan_data : Dictionary) -> void:
 	if get_parent() != null:
+		var chkpt_count = 0
 		for i in get_parent().get_children():
 			if i is Checkpoint:
 				if i.is_top_checkpt == true and i.is_plan_set == false:
 					print("top checkpoint: ", i.id)
 					on_set_plan(plan_data, i, get_parent())
 					#i.set_plan_val(true)
-
+				elif i.is_init_checkpt == true:
+					print("INIT CHECKPOINT: ", i.id)
+					on_set_plan_helper(plan_data, init_id, i.id, i.get_index(), get_parent())
+					
 func on_set_plan_bottom(plan_data : Dictionary) -> void:
 	if get_parent() != null:
 		for i in get_parent().get_children():
@@ -119,9 +123,12 @@ func on_set_plan(plan_data : Dictionary, checkpt : Checkpoint, chkpt_container :
 	if checkpt.id == 1:
 		on_set_plan_helper(plan_data, init_id, curr_id, checkpt_idx, chkpt_container)
 	else:
-		init_id = chkpt_container.get_child(checkpt.get_index()).id - 2
-		curr_id = chkpt_container.get_child(checkpt.get_index()).id
-		on_set_plan_helper(plan_data, init_id, curr_id, checkpt_idx, chkpt_container)
+		var count = 0
+		if count == 0:
+			init_id = chkpt_container.get_child(checkpt.get_index()).id - 2
+			curr_id = chkpt_container.get_child(checkpt.get_index()).id
+			on_set_plan_helper(plan_data, init_id, curr_id, checkpt_idx, chkpt_container)
+			count += 1
 
 func on_set_plan_helper(plan_data : Dictionary, init_id : int, curr_id : int, 
 							checkpt_idx : int, chkpt_container : VBoxContainer) -> void:	
@@ -188,7 +195,7 @@ func on_set_plan_helper(plan_data : Dictionary, init_id : int, curr_id : int,
 	
 	print("=====TEST TEMP ARRAY=====")
 	for i in temp_arr:
-		print(i.get_node("Panel/Label").text)
+		print("Current id: ", curr_id, ", Plan: ", i.get_node("Panel/Label").text)
 	
 	# check whether or not there is a split. if so, find the location of the split
 	var split_found = false
@@ -198,7 +205,7 @@ func on_set_plan_helper(plan_data : Dictionary, init_id : int, curr_id : int,
 			split_found = true
 			split_idx = temp_arr.find(i)
 			break
-	
+		
 	# if split found, retrieve the previous checkpoint's container holding the plan snippets
 	if split_found == true:	
 		# retrieve previous vbox container
